@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { Button, Field, NumberStepper, TextInput, toast } from '@/shared/ui';
-import { formatNumber } from '@/shared/lib/formatters';
 import { assessmentInputSchema, type AssessmentInput } from '../model/assessment.schema';
 import type { TrainingGoal } from '../model/assessment.types';
 import { bmiCategory, computeBmi } from '../lib/planGenerator';
@@ -20,7 +19,10 @@ const DEFAULTS: AssessmentInput = {
 
 export function PlanGeneratorForm() {
   const { t, i18n } = useTranslation(['plan', 'common']);
-  const locale = i18n.language.startsWith('ar') ? 'ar' : 'en';
+  const bmiFmt = new Intl.NumberFormat(i18n.language.startsWith('ar') ? 'ar-EG' : 'en-US', {
+    numberingSystem: 'latn',
+    maximumFractionDigits: 1,
+  });
   const { save } = useAssessment();
 
   const {
@@ -102,7 +104,7 @@ export function PlanGeneratorForm() {
         <p className="text-sm text-[var(--color-steel)]">
           {t('plan:bmi.label')}:{' '}
           <span className="font-numeric font-semibold text-[var(--color-ink)]">
-            {formatNumber(bmiPreview, locale)}
+            {bmiFmt.format(bmiPreview)}
           </span>{' '}
           · {t(`plan:bmi.category.${bmiCategory(bmiPreview)}`)}
         </p>
