@@ -14,6 +14,16 @@ export const inviteFriendsSchema = z.object({
 });
 export type InviteFriendsInput = z.infer<typeof inviteFriendsSchema>;
 
+export const addMemberSchema = z.object({
+  handle: z
+    .string()
+    .trim()
+    .min(2, { message: 'social:error.handle_short' })
+    .max(24, { message: 'social:error.handle_long' })
+    .regex(/^[a-z0-9_.-]+$/i, { message: 'social:error.handle_chars' }),
+});
+export type AddMemberInput = z.infer<typeof addMemberSchema>;
+
 export const sendNudgeSchema = z.object({
   squadId: z.string().uuid(),
   messageKey: z.enum(['nudge.workout_time', 'nudge.finished', 'nudge.streak']),

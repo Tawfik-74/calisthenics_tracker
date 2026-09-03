@@ -14,6 +14,8 @@ const MOCK_SQUAD: Squad = {
       avatarUrl: null,
       role: 'owner',
       joinedAt: '2026-02-01T08:00:00.000Z' as Squad['createdAt'],
+      status: 'active',
+      streak: 6,
     },
     {
       userId: asId('00000000-0000-4000-8000-000000000002'),
@@ -21,6 +23,8 @@ const MOCK_SQUAD: Squad = {
       avatarUrl: null,
       role: 'member',
       joinedAt: '2026-02-03T08:00:00.000Z' as Squad['createdAt'],
+      status: 'active',
+      streak: 11,
     },
     {
       userId: asId('00000000-0000-4000-8000-000000000003'),
@@ -28,6 +32,8 @@ const MOCK_SQUAD: Squad = {
       avatarUrl: null,
       role: 'member',
       joinedAt: '2026-02-05T08:00:00.000Z' as Squad['createdAt'],
+      status: 'resting',
+      streak: 2,
     },
   ],
 };
@@ -50,6 +56,10 @@ export const squadApi = {
         avatarUrl: ((m.profiles as Record<string, unknown>)?.avatar_url as string) ?? null,
         role: m.role as 'owner' | 'member',
         joinedAt: m.joined_at as Squad['createdAt'],
+        // Real-mode standing derivation from workout_sessions is out of scope for
+        // this slice; safe defaults keep the type intact.
+        status: 'active' as const,
+        streak: 0,
       })),
     };
   },
