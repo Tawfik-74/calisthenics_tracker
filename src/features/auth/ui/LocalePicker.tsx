@@ -17,7 +17,9 @@ export function LocalePicker({ className }: { className?: string }) {
           onClick={() => void i18n.changeLanguage(l)}
           className={cn(
             'min-h-[36px] min-w-[44px] rounded-full px-2 text-sm font-semibold',
-            active === l ? 'bg-[var(--color-ink)] text-white' : 'text-[var(--color-steel)]',
+            active === l
+              ? 'bg-[var(--color-ink)] text-[var(--color-raised)]'
+              : 'text-[var(--color-steel)]',
           )}
         >
           {labels[l]}

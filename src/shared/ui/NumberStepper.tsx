@@ -58,5 +58,5 @@ export function NumberStepper({
 
 const btn = cn(
   'grid h-14 w-14 place-items-center rounded-full text-2xl font-semibold',
-  'text-[var(--color-ink)] hover:bg-black/5 disabled:opacity-30 disabled:pointer-events-none',
+  'text-[var(--color-ink)] hover:bg-[var(--color-hover)] disabled:opacity-30 disabled:pointer-events-none',
 );

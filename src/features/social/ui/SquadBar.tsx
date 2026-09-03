@@ -43,7 +43,7 @@ export function SquadBar({ onSelectMember }: { onSelectMember?: (userId: UserId)
               onPointerEnter={() => prefetch(m.userId)}
               onFocus={() => prefetch(m.userId)}
               disabled={!onSelectMember}
-              className="flex min-h-[48px] items-center gap-2 rounded-full bg-black/5 px-3 text-sm enabled:hover:bg-black/10 disabled:cursor-default"
+              className="flex min-h-[48px] items-center gap-2 rounded-full bg-[var(--color-hover)] px-3 text-sm enabled:hover:bg-[var(--color-hover-strong)] disabled:cursor-default"
             >
               <span
                 aria-hidden="true"

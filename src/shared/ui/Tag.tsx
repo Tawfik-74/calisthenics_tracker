@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/cn';
 type TagTone = 'neutral' | 'effort' | 'squad' | 'banked';
 
 const tones: Record<TagTone, string> = {
-  neutral: 'bg-black/5 text-[var(--color-steel)]',
+  neutral: 'bg-[var(--color-hover)] text-[var(--color-steel)]',
   effort: 'bg-[var(--color-effort)]/10 text-[var(--color-effort-ink)]',
   squad: 'bg-[var(--color-squad)]/15 text-[var(--color-ink)]',
   banked: 'bg-[var(--color-banked)]/10 text-[var(--color-banked)]',

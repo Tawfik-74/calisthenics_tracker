@@ -20,7 +20,7 @@ export function MonthPicker({
         type="button"
         aria-label="previous month"
         onClick={() => onChange(shiftMonth(month, -1))}
-        className="grid h-12 w-12 place-items-center rounded-full hover:bg-black/5 rtl:rotate-180"
+        className="grid h-12 w-12 place-items-center rounded-full hover:bg-[var(--color-hover)] rtl:rotate-180"
       >
         ‹
       </button>
@@ -29,7 +29,7 @@ export function MonthPicker({
         type="button"
         aria-label="next month"
         onClick={() => onChange(shiftMonth(month, 1))}
-        className="grid h-12 w-12 place-items-center rounded-full hover:bg-black/5 rtl:rotate-180"
+        className="grid h-12 w-12 place-items-center rounded-full hover:bg-[var(--color-hover)] rtl:rotate-180"
       >
         ›
       </button>
