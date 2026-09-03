@@ -5,7 +5,7 @@ import { useThemeStore, type ThemeMode } from '@/shared/lib/theme';
 const MODES: { mode: ThemeMode; glyph: string }[] = [
   { mode: 'light', glyph: '☀' },
   { mode: 'dark', glyph: '☾' },
-  { mode: 'system', glyph: 'A' },
+  { mode: 'system', glyph: 'Auto' },
 ];
 
 export function ThemeToggle({ className }: { className?: string }) {
@@ -26,9 +26,10 @@ export function ThemeToggle({ className }: { className?: string }) {
           role="radio"
           aria-checked={mode === m}
           aria-label={t(`theme.${m}`)}
+          title={t(`theme.${m}`)}
           onClick={() => setMode(m)}
           className={cn(
-            'min-h-[36px] min-w-[40px] rounded-full px-2 text-sm font-semibold',
+            'min-h-[36px] min-w-[40px] rounded-full px-2.5 text-sm font-semibold',
             mode === m
               ? 'bg-[var(--color-ink)] text-[var(--color-raised)]'
               : 'text-[var(--color-steel)]',

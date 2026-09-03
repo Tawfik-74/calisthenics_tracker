@@ -19,7 +19,7 @@ export type {
   MemberMonthSummary,
 } from './model/memberProfile.types';
 export { useNudgeChannel } from './lib/useNudgeChannel';
-export { enablePush, pushSupport } from './lib/pushSubscription';
+export { enablePush, enableAlerts, alertsEnabled, pushSupport } from './lib/pushSubscription';
 export { squadApi } from './api/squadApi';
 export { nudgeApi } from './api/nudgeApi';
 export { SQUAD_MAX_MEMBERS } from './model/squad.types';
