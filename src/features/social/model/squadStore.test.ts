@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { asId, type UserId } from '@/shared/types/ids';
+import { asId } from '@/shared/types/ids';
 import { useSquadStore } from './squadStore';
 
 const OWNER_ID = asId<'UserId'>('00000000-0000-4000-8000-000000000001');

@@ -1,7 +1,8 @@
 import { supabase } from '@/shared/lib/supabase';
-import { asId, nowIso, type SquadId } from '@/shared/types/ids';
-import type { Squad } from '../model/squad.types';
-import type { InviteFriendsInput } from '../model/squad.schema';
+import { asId, nowIso, type SquadId, type UserId } from '@/shared/types/ids';
+import type { Squad, SquadMember } from '../model/squad.types';
+import type { AddMemberInput, InviteFriendsInput } from '../model/squad.schema';
+import { useSquadStore } from '../model/squadStore';
 
 const MOCK_SQUAD: Squad = {
   id: asId('00000000-0000-4000-8000-0000000000aa'),
@@ -38,9 +39,17 @@ const MOCK_SQUAD: Squad = {
   ],
 };
 
+async function currentSquadId(): Promise<SquadId | null> {
+  const squad = await squadApi.mine();
+  return squad?.id ?? null;
+}
+
 export const squadApi = {
   async mine(): Promise<Squad | null> {
-    if (!supabase) return MOCK_SQUAD;
+    if (!supabase) {
+      const { squadName, members } = useSquadStore.getState();
+      return { id: MOCK_SQUAD.id, name: squadName, createdAt: MOCK_SQUAD.createdAt, members };
+    }
     const { data } = await supabase
       .from('squads')
       .select('id, name, created_at, squad_members(user_id, role, joined_at, profiles(display_name, avatar_url))')
@@ -69,6 +78,54 @@ export const squadApi = {
     const { data, error } = await supabase.from('squads').insert({ name }).select().single();
     if (error) throw error;
     return { id: asId(data.id), name: data.name, createdAt: data.created_at, members: [] };
+  },
+
+  async addMember(input: AddMemberInput): Promise<SquadMember> {
+    if (!supabase) {
+      const result = useSquadStore.getState().addMember(input.handle);
+      if (!result.ok) throw new Error(`social:error.${result.error}`);
+      return result.value;
+    }
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('id, display_name, avatar_url')
+      .ilike('display_name', input.handle)
+      .maybeSingle();
+    if (!profile) throw new Error('social:error.handle_not_found');
+
+    const squadId = await currentSquadId();
+    if (!squadId) throw new Error('social:error.not_found');
+
+    const { error } = await supabase
+      .from('squad_members')
+      .insert({ squad_id: squadId, user_id: profile.id, role: 'member' });
+    if (error) {
+      throw new Error(
+        /SQUAD_FULL/.test(error.message) ? 'social:error.squad_full' : 'social:error.invite_failed',
+      );
+    }
+
+    return {
+      userId: asId(profile.id),
+      displayName: profile.display_name,
+      avatarUrl: profile.avatar_url ?? null,
+      role: 'member',
+      joinedAt: nowIso(),
+      status: 'active',
+      streak: 0,
+    };
+  },
+
+  async removeMember(userId: UserId): Promise<void> {
+    if (!supabase) {
+      const result = useSquadStore.getState().removeMember(userId);
+      if (!result.ok) throw new Error(`social:error.${result.error}`);
+      return;
+    }
+    const squadId = await currentSquadId();
+    if (!squadId) return;
+    await supabase.from('squad_members').delete().eq('squad_id', squadId).eq('user_id', userId);
   },
 
   async invite(input: InviteFriendsInput): Promise<{ invited: number }> {
