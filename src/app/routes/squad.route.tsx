@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Sheet } from '@/shared/ui';
-import { SquadBar, InviteForm, NudgeAlertsPrompt, useSquad } from '@/features/social';
+import { SquadBar, SquadManager, InviteForm, NudgeAlertsPrompt, useSquad } from '@/features/social';
 
 export function SquadRoute() {
   const { t } = useTranslation(['social', 'common']);
@@ -15,6 +15,7 @@ export function SquadRoute() {
       <h1 className="font-display text-xl font-bold">{t('social:title')}</h1>
       <NudgeAlertsPrompt />
       <SquadBar onSelectMember={(userId) => navigate(`/squad/${userId}`)} />
+      <SquadManager />
 
       {squad && (
         <>

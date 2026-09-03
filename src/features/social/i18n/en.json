@@ -15,7 +15,8 @@
   "action": {
     "nudge": "Let's go 💪",
     "send_invites": "Send invites",
-    "create_squad": "Create squad"
+    "create_squad": "Create squad",
+    "remove": "Remove"
   },
   "alerts": {
     "pitch": "Get a nudge even when the app is closed",
@@ -27,6 +28,27 @@
     "reps": "reps",
     "no_sessions": "No sessions logged this month.",
     "back": "Back to squad"
+  },
+  "manage": {
+    "title": "Members"
+  },
+  "status": {
+    "active": "Active",
+    "resting": "Resting"
+  },
+  "add": {
+    "label": "Add a squadmate",
+    "placeholder": "username or ID",
+    "hint": "Letters, numbers, dots, dashes and underscores",
+    "submit": "Add to squad",
+    "full": "The squad is full — remove someone to add another"
+  },
+  "remove": {
+    "confirm": "Tap again to remove"
+  },
+  "toast": {
+    "member_added": "{{name}} joined the squad",
+    "member_removed": "Removed from the squad"
   },
   "nudge": {
     "workout_time": "{{name}} says it's training time.",
@@ -45,6 +67,13 @@
     "nudge_failed": "Couldn't send the nudge",
     "invite_failed": "Couldn't send invites",
     "member_unavailable": "Couldn't load this profile",
-    "member_forbidden": "You can only see profiles from your own squad"
+    "member_forbidden": "You can only see profiles from your own squad",
+    "handle_short": "Use at least 2 characters",
+    "handle_long": "Keep it under 24 characters",
+    "handle_chars": "Letters, numbers, dots, dashes and underscores only",
+    "handle_not_found": "No one found with that username",
+    "duplicate": "They're already in the squad",
+    "cannot_remove_owner": "The squad owner can't be removed",
+    "not_found": "That member isn't in the squad"
   }
 }
