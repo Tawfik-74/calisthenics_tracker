@@ -7,6 +7,11 @@
     "intermediate": "Intermediate — full range, real reps",
     "advanced": "Advanced — unilateral & levers"
   },
+  "tier": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
   "split": {
     "push": "Push",
     "pull": "Pull",
@@ -14,10 +19,93 @@
     "core": "Core",
     "rest": "Rest"
   },
+  "muscle": {
+    "push": "Push",
+    "pull": "Pull",
+    "legs": "Legs",
+    "core": "Core"
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
   "unit": { "sec": "s" },
   "action": {
     "start_day": "Start this session",
-    "regenerate": "Regenerate plan"
+    "regenerate": "Regenerate plan",
+    "resume": "resume"
+  },
+  "goal": {
+    "label": "Primary goal",
+    "strength": "Strength",
+    "strength_hint": "Heavy, low reps, long rest",
+    "hypertrophy": "Hypertrophy",
+    "hypertrophy_hint": "Moderate reps, controlled tempo, muscle growth",
+    "mastery": "Calisthenics mastery",
+    "mastery_hint": "Skill work — harder progressions, longer holds",
+    "fat_loss": "Fat loss",
+    "fat_loss_hint": "Higher reps, short rest, a core finisher"
+  },
+  "assessment": {
+    "title": "Let's build your plan",
+    "subtitle": "A few numbers so the plan matches where you are today.",
+    "benchmarks": "Strength benchmarks — max reps in one set",
+    "submit": "Generate my plan",
+    "retake": "Retake assessment",
+    "frequency": "Days / week"
+  },
+  "field": {
+    "weight": "Weight",
+    "weight_hint": "kilograms",
+    "height": "Height",
+    "height_hint": "centimetres",
+    "push_ups": "Push-ups",
+    "pull_ups": "Pull-ups",
+    "dips": "Dips"
+  },
+  "bmi": {
+    "label": "BMI",
+    "tier_label": "Fitness tier",
+    "score_label": "Benchmark score",
+    "category": {
+      "underweight": "Underweight",
+      "normal": "Normal",
+      "overweight": "Overweight",
+      "obese": "Obese"
+    }
+  },
+  "library": {
+    "title": "Movement library",
+    "swap_title": "Swap exercise",
+    "all": "All",
+    "choose": "Choose",
+    "empty": "No movements match those filters.",
+    "filter": {
+      "group": "Muscle group",
+      "difficulty": "Difficulty"
+    }
+  },
+  "editor": {
+    "title": "Edit plan",
+    "swap": "Swap",
+    "remove": "Remove",
+    "add": "Add exercise",
+    "save": "Save plan",
+    "discard": "Discard",
+    "sets": "Sets",
+    "reps": "reps"
+  },
+  "toast": {
+    "plan_ready": "Plan ready — let's train",
+    "plan_saved": "Plan saved",
+    "plan_regenerated": "Fresh plan generated",
+    "assessment_cleared": "Assessment cleared"
+  },
+  "error": {
+    "weight_range": "Enter a weight between 30 and 250 kg",
+    "height_range": "Enter a height between 120 and 230 cm",
+    "benchmark_range": "Enter a realistic rep count"
   },
   "exercise": {
     "push_up": "Push-up",
@@ -25,6 +113,7 @@
     "pike_push_up": "Pike push-up",
     "dip": "Dip",
     "pseudo_planche_push_up": "Pseudo-planche push-up",
+    "decline_push_up": "Decline push-up",
     "australian_row": "Australian row",
     "pull_up": "Pull-up",
     "chin_up": "Chin-up",
@@ -39,5 +128,108 @@
     "hanging_knee_raise": "Hanging knee raise",
     "l_sit": "L-sit",
     "front_lever_tuck": "Front lever (tuck)"
+  },
+  "cue": {
+    "finisher": "Finisher — short rest, keep moving",
+    "push_up": {
+      "0": "Hands under the shoulders, body in one line",
+      "1": "Lower until the elbows reach 90°",
+      "2": "Push the floor away; don't flare the elbows"
+    },
+    "incline_push_up": {
+      "0": "Hands on a bench or rail",
+      "1": "Keep the hips from sagging",
+      "2": "The higher the surface, the easier the rep"
+    },
+    "pike_push_up": {
+      "0": "Hips high, head pointing at the floor",
+      "1": "Lower the crown of your head toward your hands",
+      "2": "Press back up to the pike position"
+    },
+    "dip": {
+      "0": "Start at lockout with the shoulders pulled down",
+      "1": "Lower until the shoulders drop below the elbows",
+      "2": "Lean forward for chest, stay upright for triceps"
+    },
+    "pseudo_planche_push_up": {
+      "0": "Hands by your waist, fingers pointing back",
+      "1": "Lean forward so the shoulders pass the hands",
+      "2": "Hold the lean through the whole rep"
+    },
+    "decline_push_up": {
+      "0": "Feet elevated on a box or chair",
+      "1": "More weight on the hands — expect fewer reps",
+      "2": "Keep the body straight; don't pike at the hips"
+    },
+    "australian_row": {
+      "0": "Bar or rings set at hip height",
+      "1": "Pull the chest to the bar and squeeze the shoulder blades",
+      "2": "The straighter your body, the harder it is"
+    },
+    "pull_up": {
+      "0": "Start from a dead hang, palms facing away",
+      "1": "Pull the elbows down toward your ribs",
+      "2": "Clear the bar with your chin, then lower under control"
+    },
+    "chin_up": {
+      "0": "Palms facing you, hands shoulder-width",
+      "1": "Drive the elbows down and back",
+      "2": "Return to a full hang every rep"
+    },
+    "archer_pull_up": {
+      "0": "Pull toward one hand while the other arm stays straight",
+      "1": "Keep the working elbow tight to the ribs",
+      "2": "Alternate sides each rep"
+    },
+    "bodyweight_squat": {
+      "0": "Feet shoulder-width, toes turned out slightly",
+      "1": "Sit back and down; knees track over the toes",
+      "2": "Stand tall and squeeze the glutes at the top"
+    },
+    "split_squat": {
+      "0": "Long stance, torso upright",
+      "1": "Drop the back knee straight down",
+      "2": "Drive up through the front heel"
+    },
+    "shrimp_squat": {
+      "0": "Hold the rear foot behind you",
+      "1": "Lower until the back knee taps the floor",
+      "2": "Keep the chest up throughout"
+    },
+    "pistol_squat": {
+      "0": "One leg held straight out in front",
+      "1": "Sit all the way down under control",
+      "2": "Push through the whole foot to stand"
+    },
+    "nordic_curl": {
+      "0": "Anchor the ankles; body straight from the knees",
+      "1": "Lower as slowly as you can",
+      "2": "Catch with the hands and push back up"
+    },
+    "plank": {
+      "0": "Forearms directly under the shoulders",
+      "1": "Squeeze the glutes and brace the abs",
+      "2": "One straight line from head to heels"
+    },
+    "hollow_hold": {
+      "0": "Press the lower back into the floor",
+      "1": "Arms and legs extended, shoulders off the mat",
+      "2": "Lower the limbs to make it harder"
+    },
+    "hanging_knee_raise": {
+      "0": "Dead hang with active shoulders",
+      "1": "Curl the knees up to the chest",
+      "2": "Lower slowly — no swinging"
+    },
+    "l_sit": {
+      "0": "Press down hard on the floor or parallettes",
+      "1": "Legs straight and together, toes pointed",
+      "2": "Lift the hips so the legs clear the ground"
+    },
+    "front_lever_tuck": {
+      "0": "Hang and pull the bar toward your hips",
+      "1": "Tuck the knees; back parallel to the floor",
+      "2": "Keep the arms completely straight"
+    }
   }
 }

@@ -1,11 +1,41 @@
 export { PlanWeekView } from './ui/PlanWeekView';
 export { PlanDayCard } from './ui/PlanDayCard';
 export { LevelPicker } from './ui/LevelPicker';
+export { GoalPicker } from './ui/GoalPicker';
+export { PlanGeneratorForm } from './ui/PlanGeneratorForm';
+export { BmiCard } from './ui/BmiCard';
+export { MoveCard } from './ui/MoveCard';
+export { ExerciseLibrarySheet } from './ui/ExerciseLibrarySheet';
+export { PlanLibraryButton } from './ui/PlanLibraryButton';
+export { PlanEditor } from './ui/PlanEditor';
 export { usePlan } from './lib/usePlan';
-export { generatePlan } from './lib/generatePlan';
+export { useAssessment } from './lib/useAssessment';
+export { usePlanEditor } from './lib/usePlanEditor';
+export {
+  generatePlan,
+  planFromProfile,
+  assess,
+  computeBmi,
+  bmiCategory,
+  assessTier,
+  benchmarkScore,
+  TIER_WEIGHTS,
+  TIER_CUTOFFS,
+  GOAL_DAYS,
+} from './lib/planGenerator';
 export { exerciseName } from './lib/exerciseName';
-export { EXERCISES, exerciseById, exerciseBySlug } from './lib/exerciseCatalog';
+export { MOVES, moveById, moveBySlug, EXERCISES, exerciseById, exerciseBySlug } from './lib/moves';
+export type { Move, MuscleGroup } from './lib/moves';
 export { planApi } from './api/planApi';
+export { useAssessmentStore, selectHasAssessment } from './model/assessmentStore';
+export { assessmentInputSchema, persistedAssessmentSchema } from './model/assessment.schema';
+export type { AssessmentInput } from './model/assessment.schema';
+export type {
+  Assessment,
+  AssessmentResult,
+  TrainingGoal,
+  BmiCategory,
+} from './model/assessment.types';
 export type { WorkoutPlan, PlanDay, PlannedExercise, Exercise, Split } from './model/plan.types';
 export { default as planEn } from './i18n/en.json';
 export { default as planAr } from './i18n/ar.json';
