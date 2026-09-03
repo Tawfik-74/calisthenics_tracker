@@ -1,0 +1,41 @@
+{
+  "no_active": "No session running.",
+  "target": "Target",
+  "set": "Set",
+  "label": { "reps": "Reps", "hold": "Hold" },
+  "unit": { "reps": "reps", "sec": "s" },
+  "ledger": {
+    "banked": "Reps banked",
+    "sets": "{{count}} set",
+    "sets_plural": "{{count}} sets",
+    "hold": "held",
+    "empty": "No sets yet. Start with your first push-up."
+  },
+  "rest": { "title": "Rest", "skip": "Skip rest" },
+  "action": {
+    "log_set": "Log set",
+    "remove_set": "Remove",
+    "finish": "Finish session",
+    "abandon": "Abandon"
+  },
+  "summary": {
+    "title": "Session logged",
+    "saved": "Session logged",
+    "reps": "Reps",
+    "sets": "Sets",
+    "time": "Time"
+  },
+  "error": {
+    "no_session": "Start a session first",
+    "no_sets": "Log at least one set",
+    "no_exercises": "Log at least one exercise",
+    "reps_required": "Enter the reps for this set",
+    "hold_required": "Enter the hold time for this set",
+    "reps_not_applicable": "This exercise is timed, not counted",
+    "hold_not_applicable": "This exercise is counted, not timed",
+    "end_before_start": "The session can't end before it started",
+    "session_too_old": "This session is too old to save",
+    "invalid_session": "Something's off with this session",
+    "sync_retry": "Couldn't sync — will retry when you're back online"
+  }
+}

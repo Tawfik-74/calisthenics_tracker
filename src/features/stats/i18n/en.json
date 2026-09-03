@@ -1,0 +1,17 @@
+{
+  "title": "Monthly totals",
+  "empty": "No sessions logged this month yet.",
+  "by_exercise": "By exercise",
+  "kpi": {
+    "sessions": "Sessions",
+    "active_days": "Active days",
+    "volume": "Volume"
+  },
+  "col": {
+    "exercise": "Exercise",
+    "volume": "Volume",
+    "sets": "Sets",
+    "best": "Best set",
+    "change": "vs last month"
+  }
+}

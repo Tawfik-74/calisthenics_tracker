@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ── Color ─────────────────────────────────────────────── */
+  --color-surface: #f1f3f2; /* cool paper, faint green cast — concrete in daylight */
+  --color-raised: #ffffff; /* cards */
+  --color-ink: #14181a; /* primary text */
+  --color-steel: #616c75; /* secondary text, hairlines — the bar itself */
+  --color-line: #d7dcda;
+  --color-effort: #1e4fd8; /* cobalt — primary action, the active set */
+  --color-effort-ink: #0c2a82; /* pressed / text-on-light variant */
+  --color-squad: #e8a317; /* amber — a friend is calling you out */
+  --color-banked: #157f5f; /* deep green — set completed, month total */
+  --color-danger: #b3261e;
+
+  /* ── Spacing: 4px base ─────────────────────────────────── */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem; /* 48 — minimum touch target */
+  --spacing-16: 4rem;
+
+  /* ── Radius ────────────────────────────────────────────── */
+  --radius-sm: 2px;
+  --radius-md: 10px;
+  --radius-full: 9999px;
+
+  /* ── Type ──────────────────────────────────────────────── */
+  --font-display: 'Bricolage Grotesque', 'IBM Plex Sans Arabic', sans-serif;
+  --font-body: 'Public Sans', 'IBM Plex Sans Arabic', sans-serif;
+  --font-numeric: 'Spline Sans Mono', 'IBM Plex Sans Arabic', monospace;
+
+  --text-hero: 4.5rem; /* the live rep count */
+  --text-xl: 1.75rem;
+  --text-lg: 1.25rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* ── Motion ────────────────────────────────────────────── */
+  --ease-stamp: cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* Numerals are tabular everywhere. A rep counter must not reflow as it ticks. */
+.font-numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

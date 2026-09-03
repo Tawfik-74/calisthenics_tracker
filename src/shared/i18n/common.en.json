@@ -1,0 +1,23 @@
+{
+  "app": {
+    "name": "Calisthenics Tracker",
+    "tagline": "Count every rep. Keep the ledger honest."
+  },
+  "nav": {
+    "today": "Today",
+    "session": "Session",
+    "squad": "Squad",
+    "stats": "Stats"
+  },
+  "action": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "retry": "Try again",
+    "close": "Close"
+  },
+  "state": {
+    "loading": "Loading…",
+    "offline": "Offline — your sets are saved on this device",
+    "empty": "Nothing here yet"
+  }
+}

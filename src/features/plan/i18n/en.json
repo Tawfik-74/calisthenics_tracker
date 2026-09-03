@@ -1,0 +1,43 @@
+{
+  "title": "Your week",
+  "rest_day": "Rest. Walk, stretch, eat.",
+  "level": {
+    "label": "Fitness level",
+    "beginner": "Beginner — building the base",
+    "intermediate": "Intermediate — full range, real reps",
+    "advanced": "Advanced — unilateral & levers"
+  },
+  "split": {
+    "push": "Push",
+    "pull": "Pull",
+    "legs": "Legs",
+    "core": "Core",
+    "rest": "Rest"
+  },
+  "unit": { "sec": "s" },
+  "action": {
+    "start_day": "Start this session",
+    "regenerate": "Regenerate plan"
+  },
+  "exercise": {
+    "push_up": "Push-up",
+    "incline_push_up": "Incline push-up",
+    "pike_push_up": "Pike push-up",
+    "dip": "Dip",
+    "pseudo_planche_push_up": "Pseudo-planche push-up",
+    "australian_row": "Australian row",
+    "pull_up": "Pull-up",
+    "chin_up": "Chin-up",
+    "archer_pull_up": "Archer pull-up",
+    "bodyweight_squat": "Bodyweight squat",
+    "split_squat": "Split squat",
+    "shrimp_squat": "Shrimp squat",
+    "pistol_squat": "Pistol squat",
+    "nordic_curl": "Nordic curl",
+    "plank": "Plank",
+    "hollow_hold": "Hollow hold",
+    "hanging_knee_raise": "Hanging knee raise",
+    "l_sit": "L-sit",
+    "front_lever_tuck": "Front lever (tuck)"
+  }
+}

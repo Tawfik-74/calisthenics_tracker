@@ -1,0 +1,50 @@
+{
+  "title": "Squad",
+  "no_squad": "You're not in a squad yet. Create one and invite up to 3 friends.",
+  "owner": "Owner",
+  "you": "You",
+  "nudge_sent": "Nudge sent to {{count}} squadmate",
+  "nudge_sent_plural": "Nudge sent to {{count}} squadmates",
+  "nudge_cooldown": "Nudge sent — wait a bit",
+  "invited": "Invited {{count}} friend",
+  "invited_plural": "Invited {{count}} friends",
+  "field": {
+    "emails": "Friends' emails",
+    "emails_hint": "Up to {{max}}, separated by commas"
+  },
+  "action": {
+    "nudge": "Let's go 💪",
+    "send_invites": "Send invites",
+    "create_squad": "Create squad"
+  },
+  "alerts": {
+    "pitch": "Get a nudge even when the app is closed",
+    "enable": "Enable alerts"
+  },
+  "member": {
+    "recent": "Recent workouts",
+    "top_exercises": "Top exercises",
+    "reps": "reps",
+    "no_sessions": "No sessions logged this month.",
+    "back": "Back to squad"
+  },
+  "nudge": {
+    "workout_time": "{{name}} says it's training time.",
+    "finished": "{{name}} just finished their session.",
+    "streak": "{{name}} is on a streak — don't break the chain."
+  },
+  "invite": {
+    "default": "{{name}} invited you to train together.",
+    "friendly": "{{name}} wants you in the squad. No excuses."
+  },
+  "error": {
+    "email_invalid": "Check this email address",
+    "at_least_one": "Add at least one email",
+    "squad_full": "A squad holds 4 people max",
+    "duplicate_emails": "That email is listed twice",
+    "nudge_failed": "Couldn't send the nudge",
+    "invite_failed": "Couldn't send invites",
+    "member_unavailable": "Couldn't load this profile",
+    "member_forbidden": "You can only see profiles from your own squad"
+  }
+}

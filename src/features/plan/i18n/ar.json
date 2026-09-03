@@ -1,0 +1,43 @@
+{
+  "title": "أسبوعك",
+  "rest_day": "راحة. امشِ، تمدّد، وتناول طعامًا جيدًا.",
+  "level": {
+    "label": "مستوى اللياقة",
+    "beginner": "مبتدئ — بناء الأساس",
+    "intermediate": "متوسط — مدى حركة كامل وتكرارات حقيقية",
+    "advanced": "متقدم — تمارين أحادية الجانب والروافع"
+  },
+  "split": {
+    "push": "دفع",
+    "pull": "سحب",
+    "legs": "أرجل",
+    "core": "الجذع",
+    "rest": "راحة"
+  },
+  "unit": { "sec": "ث" },
+  "action": {
+    "start_day": "ابدأ هذه الجلسة",
+    "regenerate": "أعد توليد الخطة"
+  },
+  "exercise": {
+    "push_up": "ضغط",
+    "incline_push_up": "ضغط مائل",
+    "pike_push_up": "ضغط بايك",
+    "dip": "غطس",
+    "pseudo_planche_push_up": "ضغط شبه بلانش",
+    "australian_row": "تجديف أسترالي",
+    "pull_up": "عقلة",
+    "chin_up": "عقلة قبضة عكسية",
+    "archer_pull_up": "عقلة الرامي",
+    "bodyweight_squat": "قرفصاء بوزن الجسم",
+    "split_squat": "قرفصاء منفصلة",
+    "shrimp_squat": "قرفصاء الجمبري",
+    "pistol_squat": "قرفصاء المسدس",
+    "nordic_curl": "ثني نوردي",
+    "plank": "بلانك",
+    "hollow_hold": "ثبات مجوّف",
+    "hanging_knee_raise": "رفع الركبة معلقًا",
+    "l_sit": "جلسة L",
+    "front_lever_tuck": "رافعة أمامية (منكمشة)"
+  }
+}
