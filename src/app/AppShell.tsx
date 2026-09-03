@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/shared/lib/cn';
+import { ThemeToggle } from '@/shared/ui';
 import { LocalePicker, useAuthStore } from '@/features/auth';
 
 const TABS = [
@@ -24,6 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <p className="font-display text-lg font-bold">{name}</p>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <LocalePicker />
           <button
             type="button"

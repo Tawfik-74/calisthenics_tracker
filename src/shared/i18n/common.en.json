@@ -19,5 +19,11 @@
     "loading": "Loading…",
     "offline": "Offline — your sets are saved on this device",
     "empty": "Nothing here yet"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Match system"
   }
 }

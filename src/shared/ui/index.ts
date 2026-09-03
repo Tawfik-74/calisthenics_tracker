@@ -9,3 +9,4 @@ export { Toaster, toast, useToastStore } from './Toast';
 export type { ToastTone } from './Toast';
 export { Tag } from './Tag';
 export { Skeleton } from './Skeleton';
+export { ThemeToggle } from './ThemeToggle';

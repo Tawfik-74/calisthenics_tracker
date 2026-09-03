@@ -3,6 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import { queryClient } from '@/shared/config/queryClient';
 import { initI18n, i18n, registerNamespaces, useDirection } from '@/shared/i18n';
+import { useApplyTheme } from '@/shared/lib/theme';
 import { Toaster } from '@/shared/ui';
 import { authEn, authAr } from '@/features/auth';
 import { planEn, planAr } from '@/features/plan';
@@ -25,6 +26,11 @@ function DirectionProvider({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
+function ThemeProvider({ children }: { children: ReactNode }) {
+  useApplyTheme();
+  return <>{children}</>;
+}
+
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
     const saved = localStorage.getItem('ct.locale');
@@ -37,10 +43,12 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nextProvider i18n={i18n}>
-        <DirectionProvider>
-          {children}
-          <Toaster />
-        </DirectionProvider>
+        <ThemeProvider>
+          <DirectionProvider>
+            {children}
+            <Toaster />
+          </DirectionProvider>
+        </ThemeProvider>
       </I18nextProvider>
     </QueryClientProvider>
   );
