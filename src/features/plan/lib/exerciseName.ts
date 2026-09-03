@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 import type { ExerciseId } from '@/shared/types/ids';
-import { exerciseById } from './exerciseCatalog';
+import { exerciseById } from './moves';
 
 /** Resolve an exercise id to a localized name. Falls back to the slug. */
 export function exerciseName(t: TFunction, exerciseId: ExerciseId): string {
