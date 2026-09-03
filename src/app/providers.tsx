@@ -3,6 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import { queryClient } from '@/shared/config/queryClient';
 import { initI18n, i18n, registerNamespaces, useDirection } from '@/shared/i18n';
+import type { Locale } from '@/shared/types/locale';
 import { useApplyTheme } from '@/shared/lib/theme';
 import { Toaster } from '@/shared/ui';
 import { authEn, authAr } from '@/features/auth';
@@ -11,8 +12,24 @@ import { workoutsEn, workoutsAr } from '@/features/workouts';
 import { socialEn, socialAr } from '@/features/social';
 import { statsEn, statsAr } from '@/features/stats';
 
+/** Restore the saved locale synchronously so the first render already has the
+ * right `dir` — restoring it in an effect leaves a reload flashing LTR. */
+function initialLocale(): Locale {
+  try {
+    const saved = localStorage.getItem('ct.locale');
+    return saved === 'ar' || saved === 'en' ? saved : 'en';
+  } catch {
+    return 'en';
+  }
+}
+
 // The composition root is the only place features meet — so it owns i18n wiring.
-initI18n();
+const startLocale = initialLocale();
+initI18n(startLocale);
+if (typeof document !== 'undefined') {
+  document.documentElement.lang = startLocale;
+  document.documentElement.dir = startLocale === 'ar' ? 'rtl' : 'ltr';
+}
 registerNamespaces([
   { ns: 'auth', en: authEn, ar: authAr },
   { ns: 'plan', en: planEn, ar: planAr },
@@ -33,9 +50,13 @@ function ThemeProvider({ children }: { children: ReactNode }) {
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
-    const saved = localStorage.getItem('ct.locale');
-    if (saved && saved !== i18n.language) void i18n.changeLanguage(saved);
-    const onChange = (lng: string) => localStorage.setItem('ct.locale', lng);
+    const onChange = (lng: string) => {
+      try {
+        localStorage.setItem('ct.locale', lng);
+      } catch {
+        /* storage unavailable */
+      }
+    };
     i18n.on('languageChanged', onChange);
     return () => i18n.off('languageChanged', onChange);
   }, []);
