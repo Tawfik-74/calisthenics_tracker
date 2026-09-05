@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, Tag } from '@/shared/ui';
 import type { SkillId } from '../model/skill.types';
 import { injectableSteps, skillById } from '../lib/skillTree';
+import { SkillArt } from './SkillArt';
 
 /**
  * "Skill Lore" — the biomechanics + prerequisite briefing shown above a plan
@@ -26,6 +27,8 @@ export function SkillLoreCard({ skillTarget }: { skillTarget: SkillId }) {
           <Tag tone="neutral">{t(`split.${skill.primarySplit}`)}</Tag>
         </div>
       </div>
+
+      <SkillArt skillId={skill.id} />
 
       <p className="text-sm leading-relaxed text-[var(--color-steel)]">
         {t(`skill.lore.${skill.id}`)}

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/shared/lib/cn';
 import type { SkillId } from '../model/skill.types';
 import { SKILL_TREE } from '../lib/skillTree';
+import { SkillArt } from './SkillArt';
 
 export function SkillTargetGrid({
   value,
@@ -24,23 +25,26 @@ export function SkillTargetGrid({
             aria-checked={active}
             onClick={() => onChange(active ? null : skill.id)}
             className={cn(
-              'flex min-h-[64px] flex-col justify-center rounded-[12px] border px-4 py-3 text-start transition-colors',
+              'flex min-h-[64px] items-center gap-3 rounded-[12px] border p-2 text-start transition-colors',
               active
                 ? 'border-[var(--color-effort)] bg-[var(--color-effort)]/10'
                 : 'border-[var(--color-line)] hover:bg-[var(--color-hover)]',
             )}
           >
-            <span
-              className={cn(
-                'text-sm font-bold',
-                active ? 'text-[var(--color-effort-ink)]' : 'text-[var(--color-ink)]',
-              )}
-            >
-              {t(`skill.name.${skill.id}`)}
-            </span>
-            <span className="mt-0.5 text-xs text-[var(--color-steel)]">
-              {t(`difficulty.${skill.difficulty}`)} ·{' '}
-              {skill.muscleGroups.map((g) => t(`muscle.${g}`)).join(' / ')}
+            <SkillArt skillId={skill.id} variant="thumb" />
+            <span className="flex min-w-0 flex-col">
+              <span
+                className={cn(
+                  'text-sm font-bold',
+                  active ? 'text-[var(--color-effort-ink)]' : 'text-[var(--color-ink)]',
+                )}
+              >
+                {t(`skill.name.${skill.id}`)}
+              </span>
+              <span className="mt-0.5 text-xs text-[var(--color-steel)]">
+                {t(`difficulty.${skill.difficulty}`)} ·{' '}
+                {skill.muscleGroups.map((g) => t(`muscle.${g}`)).join(' / ')}
+              </span>
             </span>
           </button>
         );

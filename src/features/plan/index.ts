@@ -3,6 +3,7 @@ export { PlanDayCard } from './ui/PlanDayCard';
 export { LevelPicker } from './ui/LevelPicker';
 export { GoalPicker } from './ui/GoalPicker';
 export { SkillTargetGrid } from './ui/SkillTargetGrid';
+export { SkillArt } from './ui/SkillArt';
 export { AssessmentWizard } from './ui/AssessmentWizard';
 export { SkillLoreCard } from './ui/SkillLoreCard';
 export { BmiCard } from './ui/BmiCard';
