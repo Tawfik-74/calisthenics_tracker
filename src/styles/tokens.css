@@ -1,17 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
-  /* ── Color ─────────────────────────────────────────────── */
-  --color-surface: #f1f3f2; /* cool paper, faint green cast — concrete in daylight */
+  /* ── Color — light baseline ────────────────────────────────
+     The app is dark-first (see the dark blocks below); light keeps
+     the same electric-green accent on cool paper. */
+  --color-surface: #f4f5f5; /* cool paper */
   --color-raised: #ffffff; /* cards */
-  --color-ink: #14181a; /* primary text */
-  --color-steel: #616c75; /* secondary text, hairlines — the bar itself */
-  --color-line: #d7dcda;
-  --color-effort: #1e4fd8; /* cobalt — primary action, the active set */
-  --color-effort-ink: #0c2a82; /* pressed / text-on-light variant */
+  --color-ink: #0b0b0b; /* primary text */
+  --color-steel: #6b6b70; /* secondary text, hairlines */
+  --color-subtitle: #8e8e93; /* tertiary / placeholder */
+  --color-line: #e4e4e6;
+  --color-effort: #10b981; /* electric athletic green — primary action */
+  --color-effort-ink: #0a7c55; /* green text / pressed variant */
+  --color-on-effort: #0b0b0b; /* text + icons placed on the green accent */
   --color-squad: #e8a317; /* amber — a friend is calling you out */
-  --color-banked: #157f5f; /* deep green — set completed, month total */
-  --color-danger: #b3261e;
+  --color-banked: #10b981; /* set completed, month total */
+  --color-danger: #e5484d;
   --color-hover: rgba(0, 0, 0, 0.05); /* subtle press/hover wash */
   --color-hover-strong: rgba(0, 0, 0, 0.1);
 
@@ -26,14 +30,14 @@
   --spacing-16: 4rem;
 
   /* ── Radius ────────────────────────────────────────────── */
-  --radius-sm: 2px;
-  --radius-md: 10px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
   --radius-full: 9999px;
 
   /* ── Type ──────────────────────────────────────────────── */
   --font-display: 'Bricolage Grotesque', 'IBM Plex Sans Arabic', sans-serif;
-  --font-body: 'Public Sans', 'IBM Plex Sans Arabic', sans-serif;
-  --font-numeric: 'Spline Sans Mono', 'IBM Plex Sans Arabic', monospace;
+  --font-body: 'Spline Sans Mono', 'IBM Plex Sans Arabic', ui-monospace, monospace;
+  --font-numeric: 'Spline Sans Mono', 'IBM Plex Sans Arabic', ui-monospace, monospace;
 
   --text-hero: 4.5rem; /* the live rep count */
   --text-xl: 1.75rem;
@@ -46,38 +50,43 @@
   --ease-stamp: cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
-/* ── Dark theme ─────────────────────────────────────────────
-   Light stays the baseline above. These blocks redefine only the
-   role tokens. `:root:not([data-theme='light'])` lets the OS setting
-   win by default; `[data-theme='dark']` lets the in-app toggle win. */
+/* ── Dark theme — the OHA athletic look ─────────────────────
+   Pitch-black ground, elevated #161616 cards with a #242424 hairline,
+   electric green accent, white / grey text. `:root:not([data-theme='light'])`
+   lets the OS setting win by default; `[data-theme='dark']` lets the
+   in-app toggle win. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-surface: #0f1214;
-    --color-raised: #171b1e;
-    --color-ink: #e7ebe9;
-    --color-steel: #8a96a0;
-    --color-line: #2b3236;
-    --color-effort: #4f7cff;
-    --color-effort-ink: #b9c9ff;
+    --color-surface: #0b0b0b;
+    --color-raised: #161616;
+    --color-ink: #ffffff;
+    --color-steel: #8e8e93;
+    --color-subtitle: #636366;
+    --color-line: #242424;
+    --color-effort: #10b981;
+    --color-effort-ink: #34d399;
+    --color-on-effort: #0b0b0b;
     --color-squad: #f0b13d;
-    --color-banked: #3fae87;
-    --color-danger: #e2564d;
+    --color-banked: #10b981;
+    --color-danger: #f2555a;
     --color-hover: rgba(255, 255, 255, 0.06);
     --color-hover-strong: rgba(255, 255, 255, 0.12);
   }
 }
 
 :root[data-theme='dark'] {
-  --color-surface: #0f1214;
-  --color-raised: #171b1e;
-  --color-ink: #e7ebe9;
-  --color-steel: #8a96a0;
-  --color-line: #2b3236;
-  --color-effort: #4f7cff;
-  --color-effort-ink: #b9c9ff;
+  --color-surface: #0b0b0b;
+  --color-raised: #161616;
+  --color-ink: #ffffff;
+  --color-steel: #8e8e93;
+  --color-subtitle: #636366;
+  --color-line: #242424;
+  --color-effort: #10b981;
+  --color-effort-ink: #34d399;
+  --color-on-effort: #0b0b0b;
   --color-squad: #f0b13d;
-  --color-banked: #3fae87;
-  --color-danger: #e2564d;
+  --color-banked: #10b981;
+  --color-danger: #f2555a;
   --color-hover: rgba(255, 255, 255, 0.06);
   --color-hover-strong: rgba(255, 255, 255, 0.12);
 }

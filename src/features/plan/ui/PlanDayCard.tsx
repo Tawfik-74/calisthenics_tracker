@@ -40,7 +40,7 @@ export function PlanDayCard({ day, onStart }: { day: PlanDay; onStart?: (day: Pl
         <button
           type="button"
           onClick={() => onStart(day)}
-          className="mt-1 min-h-[48px] rounded-[10px] bg-[var(--color-effort)] text-sm font-semibold text-white"
+          className="mt-1 min-h-[48px] rounded-[12px] bg-[var(--color-effort)] text-sm font-bold text-[var(--color-on-effort)]"
         >
           {t('plan:action.start_day')}
         </button>

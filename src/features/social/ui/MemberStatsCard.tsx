@@ -46,7 +46,7 @@ export function MemberStatsCard({
       <header className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--color-effort)] text-lg font-bold text-white"
+          className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--color-effort)] text-lg font-bold text-[var(--color-on-effort)]"
         >
           {header.displayName.charAt(0)}
         </span>

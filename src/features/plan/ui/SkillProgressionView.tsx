@@ -72,7 +72,7 @@ export function SkillProgressionView() {
             className={cn(
               'min-h-[40px] shrink-0 rounded-full border px-4 text-sm font-semibold transition-colors',
               s.id === selected
-                ? 'border-[var(--color-effort)] bg-[var(--color-effort)] text-white'
+                ? 'border-[var(--color-effort)] bg-[var(--color-effort)] text-[var(--color-on-effort)]'
                 : 'border-[var(--color-line)] text-[var(--color-steel)] hover:bg-[var(--color-hover)]',
             )}
           >

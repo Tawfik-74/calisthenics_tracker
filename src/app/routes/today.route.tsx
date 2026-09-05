@@ -46,9 +46,11 @@ export function TodayRoute() {
       {active && (
         <button
           onClick={() => navigate('/session')}
-          className="rounded-[10px] bg-[var(--color-effort)] p-4 text-start text-white"
+          className="rounded-[12px] bg-[var(--color-effort)] p-4 text-start text-[var(--color-on-effort)]"
         >
-          <p className="eyebrow text-white/80">{t('common:nav.session')}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-on-effort)]/70">
+            {t('common:nav.session')}
+          </p>
           <p className="font-display text-lg font-bold">
             {t(`plan:split.${active.split}`)} — {t('plan:action.resume')}
           </p>

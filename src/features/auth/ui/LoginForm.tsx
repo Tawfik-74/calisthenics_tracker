@@ -31,7 +31,11 @@ export function LoginForm() {
       </Field>
 
       <label className="flex items-center gap-2 text-sm text-[var(--color-steel)]">
-        <input type="checkbox" className="h-4 w-4" {...register('rememberMe')} />
+        <input
+          type="checkbox"
+          className="h-4 w-4 accent-[var(--color-effort)]"
+          {...register('rememberMe')}
+        />
         {t('auth:field.remember_me')}
       </label>
 

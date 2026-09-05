@@ -47,7 +47,7 @@ export function SquadBar({ onSelectMember }: { onSelectMember?: (userId: UserId)
             >
               <span
                 aria-hidden="true"
-                className="grid h-6 w-6 place-items-center rounded-full bg-[var(--color-effort)] text-xs font-bold text-white"
+                className="grid h-6 w-6 place-items-center rounded-full bg-[var(--color-effort)] text-xs font-bold text-[var(--color-on-effort)]"
               >
                 {m.displayName.charAt(0)}
               </span>
