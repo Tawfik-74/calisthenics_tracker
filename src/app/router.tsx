@@ -4,6 +4,7 @@ import { AppShell } from './AppShell';
 import { LoginRoute } from './routes/login.route';
 import { TodayRoute } from './routes/today.route';
 import { SessionRoute } from './routes/session.route';
+import { SkillsRoute } from './routes/skills.route';
 import { SquadRoute } from './routes/squad.route';
 import { MemberRoute } from './routes/member.route';
 import { StatsRoute } from './routes/stats.route';
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
   { path: '/login', element: <LoginRoute /> },
   { path: '/today', element: protectedRoute(<TodayRoute />) },
   { path: '/session', element: protectedRoute(<SessionRoute />) },
+  { path: '/skills', element: protectedRoute(<SkillsRoute />) },
   { path: '/squad', element: protectedRoute(<SquadRoute />) },
   { path: '/squad/:userId', element: protectedRoute(<MemberRoute />) },
   { path: '/stats', element: protectedRoute(<StatsRoute />) },

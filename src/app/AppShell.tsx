@@ -8,6 +8,7 @@ import { LocalePicker, useAuthStore } from '@/features/auth';
 const TABS = [
   { to: '/today', key: 'today' },
   { to: '/session', key: 'session' },
+  { to: '/skills', key: 'skills' },
   { to: '/squad', key: 'squad' },
   { to: '/stats', key: 'stats' },
 ] as const;

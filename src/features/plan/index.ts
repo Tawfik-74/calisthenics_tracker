@@ -8,7 +8,23 @@ export { MoveCard } from './ui/MoveCard';
 export { ExerciseLibrarySheet } from './ui/ExerciseLibrarySheet';
 export { PlanLibraryButton } from './ui/PlanLibraryButton';
 export { PlanEditor } from './ui/PlanEditor';
+export { SkillProgressionView } from './ui/SkillProgressionView';
 export { usePlan } from './lib/usePlan';
+export { useInjectSkill } from './lib/useInjectSkill';
+export {
+  SKILL_TREE,
+  skillById,
+  injectableSteps,
+  injectableExercises,
+  sessionSteps,
+} from './lib/skillTree';
+export type {
+  SkillId,
+  SkillStep,
+  SkillSession,
+  SkillProgression,
+  StabilityKey,
+} from './model/skill.types';
 export { useAssessment } from './lib/useAssessment';
 export { usePlanEditor } from './lib/usePlanEditor';
 export {
