@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { ActiveSession } from '@/features/workouts';
+import { WorkoutPlayer } from '@/features/workouts';
 
-/** workouts + social — the ledger, rest timer and summary all live inside workouts. */
+/** The immersive full-screen player. It logs each set into the workouts
+ *  session store and saves the run on completion. */
 export function SessionRoute() {
   const navigate = useNavigate();
   return (
-    <ActiveSession
+    <WorkoutPlayer
       onExit={() => navigate('/stats')}
       onNoSession={() => navigate('/today')}
     />
