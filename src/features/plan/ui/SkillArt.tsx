@@ -1,14 +1,20 @@
-import { type ReactNode, useId } from 'react';
+import { type ReactNode, useId, useState } from 'react';
 import { cn } from '@/shared/lib/cn';
 import type { SkillId } from '../model/skill.types';
 
 /**
- * Real-photo overrides. Drop a file in `public/skills/` (e.g.
- * `public/skills/handstand.webp`) and point its entry here — the component
- * renders the photo instead of the built-in silhouette.
+ * Real-photo overrides. Each entry points at a file in `public/skills/`; if the
+ * file is missing (or fails to load) the component falls back to the built-in
+ * silhouette, so these can be filled in at any time with no other change.
  */
-const PHOTOS: Partial<Record<SkillId, string>> = {
-  // handstand: '/skills/handstand.webp',
+const PHOTOS: Record<SkillId, string> = {
+  handstand: '/skills/handstand.jpg',
+  muscle_up: '/skills/muscle_up.jpg',
+  pistol_squat: '/skills/pistol_squat.jpg',
+  planche: '/skills/planche.jpg',
+  front_lever: '/skills/front_lever.jpg',
+  human_flag: '/skills/human_flag.jpg',
+  dragon_flag: '/skills/dragon_flag.jpg',
 };
 
 // Shared presentation attributes — SVG <style> is not scoped, so keep it inline.
@@ -142,7 +148,8 @@ export interface SkillArtProps {
 
 export function SkillArt({ skillId, variant = 'hero', className }: SkillArtProps) {
   const gradId = useId();
-  const photo = PHOTOS[skillId];
+  const [broken, setBroken] = useState<Set<SkillId>>(() => new Set());
+  const photo = broken.has(skillId) ? null : PHOTOS[skillId];
 
   return (
     <div
@@ -156,7 +163,13 @@ export function SkillArt({ skillId, variant = 'hero', className }: SkillArtProps
       )}
     >
       {photo ? (
-        <img src={photo} alt="" loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={photo}
+          alt=""
+          loading="lazy"
+          onError={() => setBroken((s) => new Set(s).add(skillId))}
+          className="h-full w-full object-cover"
+        />
       ) : (
         <svg
           viewBox="0 0 300 300"
