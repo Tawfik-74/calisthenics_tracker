@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/ui';
 import { useAuthStore } from '@/features/auth';
 import {
+  AssessmentWizard,
   BmiCard,
   PlanEditor,
-  PlanGeneratorForm,
   PlanLibraryButton,
   PlanWeekView,
+  SkillLoreCard,
   useAssessment,
   usePlan,
   type PlanDay,
@@ -36,7 +37,7 @@ export function TodayRoute() {
   if (!assessment || !result) {
     return (
       <div className="flex flex-col gap-6">
-        <PlanGeneratorForm />
+        <AssessmentWizard />
       </div>
     );
   }
@@ -65,6 +66,8 @@ export function TodayRoute() {
           setEditing(false);
         }}
       />
+
+      {result.skillTarget && <SkillLoreCard skillTarget={result.skillTarget} />}
 
       <section className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center justify-between gap-2">

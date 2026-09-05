@@ -9,4 +9,6 @@ export { Toaster, toast, useToastStore } from './Toast';
 export type { ToastTone } from './Toast';
 export { Tag } from './Tag';
 export { Skeleton } from './Skeleton';
+export { SegmentedProgress } from './SegmentedProgress';
+export type { SegmentedProgressProps } from './SegmentedProgress';
 export { ThemeToggle } from './ThemeToggle';

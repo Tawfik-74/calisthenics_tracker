@@ -62,7 +62,29 @@
     "height_hint": "centimetres",
     "push_ups": "Push-ups",
     "pull_ups": "Pull-ups",
-    "dips": "Dips"
+    "dips": "Dips",
+    "squats": "Squats"
+  },
+  "wizard": {
+    "step_of": "Step {{current}} of {{total}}",
+    "back": "Back",
+    "continue": "Continue",
+    "goal_title": "What are you training for?",
+    "goal_subtitle": "This sets your weekly volume, rest, and how many days you train.",
+    "skill_target": "Target skill",
+    "skill_target_hint": "Pick one and the plan builds its progression into your week. Optional.",
+    "stats_title": "Your baseline",
+    "stats_subtitle": "A few numbers so the plan matches where you are today.",
+    "review_title": "Review & generate",
+    "review_subtitle": "Check the inputs, then build the plan. You can edit every exercise afterwards.",
+    "review_skill_note": "Your plan will lead with this skill's progression on its primary day, then run a balanced split around it.",
+    "review_general_note": "Your plan will be a balanced Push / Pull / Legs / Core split tuned to your tier and goal.",
+    "leg_endurance": "Leg endurance",
+    "leg_band": {
+      "low": "Building base",
+      "moderate": "Solid",
+      "high": "High capacity"
+    }
   },
   "bmi": {
     "label": "BMI",
@@ -121,19 +143,36 @@
     "nothing_to_inject": "Those prerequisites are already in your plan",
     "need_plan": "Generate a plan first, then add prerequisites to it.",
     "injected_note": "Added for skill training",
+    "focus_note": "Skill focus — do this first, fresh",
+    "lore_eyebrow": "Skill lore",
+    "lore_prereqs": "Prerequisites in your plan",
+    "lore_note": "These prerequisites are woven into your plan's primary day. Progress them before chasing the full skill.",
+    "lore": {
+      "handstand": "The freestanding handstand is a balance skill built on a pressing-strength base. It asks for profound shoulder flexion and wrist extension under load, an actively pushed 'open' scapula, and a rib-cage-tucked hollow line so corrections come from the fingertips, not the hips. Most of the work is nervous-system tuning: short, frequent exposures beat long grinding sets.",
+      "muscle_up": "The muscle-up is a pull-up that doesn't stop at the chin and a dip that starts below the bar. The bottleneck is the transition: rotating the wrists over the bar while the elbows travel from behind you to under you. It needs an explosive pull to sternum height, a secure false grip, and straight-bar dip strength to finish the rep.",
+      "pistol_squat": "The pistol squat is a full-depth single-leg squat with the free leg held out front. It demands deep ankle dorsiflexion, single-leg balance, and enough anterior-core and hip-flexor strength to keep the extended leg up. Hamstring and adductor tissue tolerance at end range is the usual limiter.",
+      "planche": "The planche holds the body parallel to the ground on straight arms — the hardest straight-arm push skill. It loads the wrists heavily and requires a strongly protracted, depressed scapula and a forward lean deep enough to put the shoulders well past the hands. Progress is measured in degrees of lean and seconds of hold.",
+      "front_lever": "The front lever is a straight-arm horizontal hang facing up. It's a scapular-depression and lat-strength benchmark paired with brutal anterior-core anti-extension: the lats pull the straight arms down toward the hips while the trunk resists folding. Lever length is the difficulty dial — tuck, then straddle, then full.",
+      "human_flag": "The human flag holds the body sideways on a vertical pole: the top arm presses down, the bottom arm pulls up, and the obliques and QL fight gravity's rotation. It blends overhead pressing strength, lat pulling strength, and lateral-core endurance in one static hold.",
+      "dragon_flag": "The dragon flag keeps the whole body rigid and straight while it lowers from vertical, pivoting only at the shoulder blades. It's an anterior-core anti-extension drill under a long lever, with the lats and grip anchoring the torso to the bench. Slow eccentrics build it fastest."
+    },
     "name": {
       "handstand": "Handstand",
       "muscle_up": "Muscle-Up",
       "pistol_squat": "Pistol Squat",
       "planche": "Planche",
-      "front_lever": "Front Lever"
+      "front_lever": "Front Lever",
+      "human_flag": "Human Flag",
+      "dragon_flag": "Dragon Flag"
     },
     "blurb": {
       "handstand": "Balance on your hands. Built on overhead pressing strength, wrist conditioning, and a tight hollow line.",
       "muscle_up": "Pull-up into a dip above the bar. Needs an explosive pull, a false-grip, and a clean transition.",
       "pistol_squat": "Full-depth single-leg squat. Demands ankle mobility, single-leg balance, and hip control.",
       "planche": "Hold your body parallel to the floor on straight arms. The hardest straight-arm push skill.",
-      "front_lever": "Hang horizontal on straight arms, facing up. A straight-arm pull and anterior-core benchmark."
+      "front_lever": "Hang horizontal on straight arms, facing up. A straight-arm pull and anterior-core benchmark.",
+      "human_flag": "Hold your body horizontal on a vertical pole. Top arm presses, bottom arm pulls, obliques hold the line.",
+      "dragon_flag": "Lower a rigid, straight body from vertical, pivoting only at the shoulders. A long-lever core benchmark."
     },
     "stability": {
       "wrist": "Wrist extension under load",
@@ -177,7 +216,16 @@
       "advanced_tuck_front_lever": "Advanced tuck front lever",
       "straight_arm_pull_down": "Straight-arm pull-down",
       "single_leg_front_lever": "Single-leg front lever",
-      "straddle_front_lever": "Straddle front lever"
+      "straddle_front_lever": "Straddle front lever",
+      "pull_up": "Pull-up",
+      "vertical_flag_pull": "Vertical flag pull",
+      "support_flag_hold": "Support flag hold",
+      "tuck_flag": "Tuck human flag",
+      "straddle_flag": "Straddle human flag",
+      "dragon_negative": "Dragon flag negative",
+      "tuck_dragon_flag": "Tuck dragon flag",
+      "straddle_dragon_flag": "Straddle dragon flag",
+      "full_dragon_flag": "Full dragon flag"
     },
     "step_hint": {
       "wall_walk": "Feet on the wall, walk your hands in until vertical, then walk out.",
@@ -210,7 +258,16 @@
       "advanced_tuck_front_lever": "Extend the hips so the torso lengthens while the knees stay bent.",
       "straight_arm_pull_down": "Standing or hanging, pull a band or bar down with locked elbows.",
       "single_leg_front_lever": "One leg extended, one tucked, hold the horizontal line.",
-      "straddle_front_lever": "Legs wide and straight, full body horizontal and facing up."
+      "straddle_front_lever": "Legs wide and straight, full body horizontal and facing up.",
+      "pull_up": "Dead hang, pull the elbows to the ribs, clear the bar with the chin.",
+      "vertical_flag_pull": "Grip a vertical pole high and low, pull yourself in to a vertical support.",
+      "support_flag_hold": "From the vertical support, let the hips drift out a few degrees and hold.",
+      "tuck_flag": "Knees tucked to the chest, body horizontal on the pole, press and pull hard.",
+      "straddle_flag": "Legs wide and straight, body horizontal — shorten the lever from full.",
+      "dragon_negative": "From a shoulder-stand on the bench, lower the straight body as slowly as possible.",
+      "tuck_dragon_flag": "Knees bent, lower and raise the hips while only the shoulders touch the bench.",
+      "straddle_dragon_flag": "Legs wide and straight, control the full range without piking.",
+      "full_dragon_flag": "Whole body rigid and straight, lower under control, pivot only at the shoulders."
     },
     "session": {
       "handstand": {
@@ -237,6 +294,16 @@
         "holds": "Lever holds",
         "pull": "Straight-arm pull",
         "core": "Core"
+      },
+      "human_flag": {
+        "press_pull": "Press & pull",
+        "flag_holds": "Flag holds",
+        "lateral_core": "Lateral core"
+      },
+      "dragon_flag": {
+        "eccentric": "Eccentrics",
+        "progression": "Progression holds",
+        "foundation": "Foundation"
       }
     }
   },

@@ -8,7 +8,9 @@ export type SkillId =
   | 'muscle_up'
   | 'pistol_squat'
   | 'planche'
-  | 'front_lever';
+  | 'front_lever'
+  | 'human_flag'
+  | 'dragon_flag';
 
 /**
  * A stability demand the skill places on a joint or line. String keys resolve

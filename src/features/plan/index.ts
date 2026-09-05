@@ -2,7 +2,9 @@ export { PlanWeekView } from './ui/PlanWeekView';
 export { PlanDayCard } from './ui/PlanDayCard';
 export { LevelPicker } from './ui/LevelPicker';
 export { GoalPicker } from './ui/GoalPicker';
-export { PlanGeneratorForm } from './ui/PlanGeneratorForm';
+export { SkillTargetGrid } from './ui/SkillTargetGrid';
+export { AssessmentWizard } from './ui/AssessmentWizard';
+export { SkillLoreCard } from './ui/SkillLoreCard';
 export { BmiCard } from './ui/BmiCard';
 export { MoveCard } from './ui/MoveCard';
 export { ExerciseLibrarySheet } from './ui/ExerciseLibrarySheet';
@@ -18,6 +20,7 @@ export {
   injectableExercises,
   sessionSteps,
 } from './lib/skillTree';
+export { applySkillFocus, SKILL_FOCUS_NOTE } from './lib/skillFocus';
 export type {
   SkillId,
   SkillStep,
@@ -35,6 +38,7 @@ export {
   bmiCategory,
   assessTier,
   benchmarkScore,
+  legEnduranceBand,
   TIER_WEIGHTS,
   TIER_CUTOFFS,
   GOAL_DAYS,
@@ -44,8 +48,12 @@ export { MOVES, moveById, moveBySlug, EXERCISES, exerciseById, exerciseBySlug } 
 export type { Move, MuscleGroup } from './lib/moves';
 export { planApi } from './api/planApi';
 export { useAssessmentStore, selectHasAssessment } from './model/assessmentStore';
-export { assessmentInputSchema, persistedAssessmentSchema } from './model/assessment.schema';
-export type { AssessmentInput } from './model/assessment.schema';
+export {
+  assessmentInputSchema,
+  persistedAssessmentSchema,
+  skillTargetSchema,
+} from './model/assessment.schema';
+export type { AssessmentInput, SkillTargetValue } from './model/assessment.schema';
 export type {
   Assessment,
   AssessmentResult,

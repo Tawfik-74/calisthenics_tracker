@@ -134,6 +134,49 @@ export const SKILL_TREE: readonly SkillProgression[] = [
       { slug: 'core', stepSlugs: ['hanging_knee_raise', 'straddle_front_lever'] },
     ],
   },
+  {
+    id: 'human_flag',
+    difficulty: 'advanced',
+    primarySplit: 'pull',
+    muscleGroups: ['pull', 'push', 'core'],
+    stability: ['scapular', 'straight_arm', 'anterior_core'],
+    steps: [
+      step('australian_row', 'australian_row', 3, 12, null),
+      step('pull_up', 'pull_up', 4, 6, null),
+      step('hanging_knee_raise', 'hanging_knee_raise', 3, 10, null),
+      step('hollow_hold', 'hollow_hold', 3, null, 30),
+      step('vertical_flag_pull', null, 4, 6, null),
+      step('support_flag_hold', null, 5, null, 10),
+      step('tuck_flag', null, 5, null, 8),
+      step('straddle_flag', null, 5, null, 6),
+    ],
+    weeklySessions: [
+      { slug: 'press_pull', stepSlugs: ['pull_up', 'vertical_flag_pull', 'australian_row'] },
+      { slug: 'flag_holds', stepSlugs: ['support_flag_hold', 'tuck_flag', 'straddle_flag'] },
+      { slug: 'lateral_core', stepSlugs: ['hanging_knee_raise', 'hollow_hold'] },
+    ],
+  },
+  {
+    id: 'dragon_flag',
+    difficulty: 'intermediate',
+    primarySplit: 'pull',
+    muscleGroups: ['core', 'pull'],
+    stability: ['anterior_core', 'scapular', 'straight_arm'],
+    steps: [
+      step('hollow_hold', 'hollow_hold', 4, null, 30),
+      step('hanging_knee_raise', 'hanging_knee_raise', 3, 12, null),
+      step('australian_row', 'australian_row', 3, 12, null),
+      step('dragon_negative', null, 4, 4, null),
+      step('tuck_dragon_flag', null, 4, 6, null),
+      step('straddle_dragon_flag', null, 4, 5, null),
+      step('full_dragon_flag', null, 5, 4, null),
+    ],
+    weeklySessions: [
+      { slug: 'eccentric', stepSlugs: ['dragon_negative', 'tuck_dragon_flag'] },
+      { slug: 'progression', stepSlugs: ['straddle_dragon_flag', 'full_dragon_flag'] },
+      { slug: 'foundation', stepSlugs: ['hollow_hold', 'hanging_knee_raise', 'australian_row'] },
+    ],
+  },
 ];
 
 export const skillById = new Map<SkillId, SkillProgression>(
