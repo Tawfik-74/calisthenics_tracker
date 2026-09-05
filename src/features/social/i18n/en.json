@@ -20,7 +20,10 @@
   },
   "alerts": {
     "pitch": "Get a nudge even when the app is closed",
-    "enable": "Enable alerts"
+    "enable": "Enable alerts",
+    "enabled": "Alerts on — your squad can nudge you",
+    "blocked": "Notifications are blocked in your browser settings",
+    "demo_name": "Layla"
   },
   "member": {
     "recent": "Recent workouts",

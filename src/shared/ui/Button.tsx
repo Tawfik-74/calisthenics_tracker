@@ -11,19 +11,19 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-[10px] font-body font-semibold transition-colors ' +
-  'disabled:opacity-50 disabled:pointer-events-none select-none';
+  'inline-flex items-center justify-center gap-2 rounded-[12px] font-body font-bold transition-[filter,background-color,color] ' +
+  'disabled:opacity-40 disabled:pointer-events-none select-none';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-[var(--color-effort)] text-white hover:bg-[var(--color-effort-ink)]',
+  primary: 'bg-[var(--color-effort)] text-[var(--color-on-effort)] hover:brightness-110',
   quiet:
-    'bg-transparent text-[var(--color-ink)] hover:bg-[var(--color-hover)] border border-[var(--color-line)]',
-  danger: 'bg-[var(--color-danger)] text-white hover:brightness-90',
+    'bg-[var(--color-raised)] text-[var(--color-ink)] hover:bg-[var(--color-hover)] border border-[var(--color-line)]',
+  danger: 'bg-[var(--color-danger)] text-white hover:brightness-95',
 };
 
 const sizes: Record<Size, string> = {
-  md: 'min-h-[48px] px-4 text-sm', // 48px minimum touch target
-  lg: 'min-h-[56px] px-6 text-base', // thumb-reachable primary action
+  md: 'min-h-[48px] px-4 py-3 text-sm', // 48px minimum touch target
+  lg: 'min-h-[56px] px-6 py-4 text-base', // thumb-reachable primary action
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

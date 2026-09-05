@@ -22,7 +22,7 @@ export function MemberRow({
     <div className="flex items-center gap-3 py-2">
       <span
         aria-hidden="true"
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[var(--color-effort)] text-sm font-bold text-white"
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[var(--color-effort)] text-sm font-bold text-[var(--color-on-effort)]"
       >
         {member.displayName.charAt(0).toUpperCase()}
       </span>

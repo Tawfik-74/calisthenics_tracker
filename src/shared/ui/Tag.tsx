@@ -5,9 +5,9 @@ type TagTone = 'neutral' | 'effort' | 'squad' | 'banked';
 
 const tones: Record<TagTone, string> = {
   neutral: 'bg-[var(--color-hover)] text-[var(--color-steel)]',
-  effort: 'bg-[var(--color-effort)]/10 text-[var(--color-effort-ink)]',
+  effort: 'bg-[var(--color-effort)]/15 text-[var(--color-effort-ink)]',
   squad: 'bg-[var(--color-squad)]/15 text-[var(--color-ink)]',
-  banked: 'bg-[var(--color-banked)]/10 text-[var(--color-banked)]',
+  banked: 'bg-[var(--color-banked)]/15 text-[var(--color-effort-ink)]',
 };
 
 export function Tag({
@@ -18,7 +18,7 @@ export function Tag({
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-[2px] px-2 py-0.5 text-xs font-semibold uppercase tracking-wide',
+        'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide',
         tones[tone],
         className,
       )}

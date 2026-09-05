@@ -21,8 +21,8 @@ export function Sheet({ open, onClose, title, children }: SheetProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" role="dialog" aria-modal="true" aria-label={title}>
       <button aria-label="Close" className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative w-full max-w-md rounded-t-[10px] bg-[var(--color-raised)] p-6 pb-8 shadow-xl">
-        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[var(--color-line)]" />
+      <div className="relative w-full max-w-md rounded-t-[16px] border border-[var(--color-line)] bg-[var(--color-raised)] p-6 pb-8 shadow-2xl">
+        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[var(--color-steel)]/40" />
         <h2 className="mb-4 font-display text-lg font-bold">{title}</h2>
         {children}
       </div>
