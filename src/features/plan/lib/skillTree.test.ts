@@ -10,9 +10,9 @@ import {
 } from './skillTree';
 
 describe('skill tree', () => {
-  it('has five target skills with unique ids', () => {
-    expect(SKILL_TREE).toHaveLength(5);
-    expect(new Set(SKILL_TREE.map((s) => s.id)).size).toBe(5);
+  it('has seven target skills with unique ids', () => {
+    expect(SKILL_TREE).toHaveLength(7);
+    expect(new Set(SKILL_TREE.map((s) => s.id)).size).toBe(7);
   });
 
   it('every catalog-backed step points at a known move', () => {

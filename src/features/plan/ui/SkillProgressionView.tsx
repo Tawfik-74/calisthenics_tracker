@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib/cn';
 import type { SkillId } from '../model/skill.types';
 import { SKILL_TREE, skillById } from '../lib/skillTree';
 import { useInjectSkill } from '../lib/useInjectSkill';
+import { SkillArt } from './SkillArt';
 
 function StepLine({
   index,
@@ -80,6 +81,8 @@ export function SkillProgressionView() {
           </button>
         ))}
       </div>
+
+      <SkillArt skillId={skill.id} />
 
       <Card className="flex flex-col gap-3">
         <div className="flex flex-wrap items-start justify-between gap-2">

@@ -10,6 +10,7 @@ import type {
 import { PROGRESSION } from './progressionTable';
 import { SPLIT_TEMPLATES } from './splitTemplates';
 import { MOVES, moveBySlug } from './moves';
+import { applySkillFocus } from './skillFocus';
 
 // ── Tunable constants ─────────────────────────────────────
 export const TIER_WEIGHTS = { pushUps: 1, pullUps: 2, dips: 1.5 } as const;
@@ -62,6 +63,14 @@ export function assessTier(a: Pick<Assessment, 'pushUps' | 'pullUps' | 'dips'>):
   return 'advanced';
 }
 
+/** Coarse leg-endurance bucket from the squat baseline. `null` when not provided. */
+export function legEnduranceBand(squats: number | undefined): AssessmentResult['legEndurance'] {
+  if (squats == null || !Number.isFinite(squats)) return null;
+  if (squats < 15) return 'low';
+  if (squats < 40) return 'moderate';
+  return 'high';
+}
+
 /** Everything derived from an assessment. Pure. */
 export function assess(a: Assessment): AssessmentResult {
   const bmi = computeBmi(a.weightKg, a.heightCm);
@@ -71,6 +80,8 @@ export function assess(a: Assessment): AssessmentResult {
     tier: assessTier(a),
     benchmarkScore: benchmarkScore(a),
     daysPerWeek: GOAL_DAYS[a.goal],
+    legEndurance: legEnduranceBand(a.squats),
+    skillTarget: a.skillTarget ?? null,
   };
 }
 
@@ -166,10 +177,28 @@ export interface GeneratePlanArgs {
   planId?: string;
 }
 
+/** Add or drop one set on the lead legs exercise based on the squat baseline. */
+function applySquatNudge(days: PlanDay[], squats: number | undefined): PlanDay[] {
+  const delta = squats == null ? 0 : squats >= 40 ? 1 : squats < 15 ? -1 : 0;
+  if (delta === 0) return days;
+  return days.map((day) =>
+    day.split !== 'legs'
+      ? day
+      : {
+          ...day,
+          exercises: day.exercises.map((ex, i) =>
+            i === 0 ? { ...ex, sets: clamp(ex.sets + delta, RANGES.sets) } : ex,
+          ),
+        },
+  );
+}
+
 /**
  * Assessment → WorkoutPlan. Derives tier + weekly frequency, runs the shared
  * progression/split tables, then applies a goal-modifier pass and a BMI nudge.
- * The output shape is identical to the legacy generator's.
+ * When the assessment names a target skill, that skill's progression is folded
+ * onto its primary training day (see {@link applySkillFocus}). The output shape
+ * is identical to the legacy generator's.
  */
 export function generatePlan({
   userId,
@@ -181,7 +210,7 @@ export function generatePlan({
   const mod = GOAL_MODIFIERS[assessment.goal];
   const template = SPLIT_TEMPLATES[result.daysPerWeek];
 
-  const days: PlanDay[] = template.map((split, i) => {
+  let days: PlanDay[] = template.map((split, i) => {
     const dayIndex = i as PlanDay['dayIndex'];
     if (split === 'rest') return { dayIndex, split, exercises: [] };
 
@@ -198,6 +227,9 @@ export function generatePlan({
 
     return { dayIndex, split, exercises };
   });
+
+  days = applySquatNudge(days, assessment.squats);
+  if (result.skillTarget) days = applySkillFocus(days, result.skillTarget);
 
   return {
     id: asId(planId),
