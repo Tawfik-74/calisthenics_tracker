@@ -157,19 +157,30 @@ export function SkillArt({ skillId, variant = 'hero', className }: SkillArtProps
       className={cn(
         'relative overflow-hidden border border-[var(--color-line)] bg-[var(--color-surface)]',
         variant === 'hero'
-          ? 'aspect-[4/3] w-full rounded-[12px]'
+          ? 'aspect-[4/3] w-full rounded-[12px] sm:aspect-[16/9]'
           : 'h-16 w-16 shrink-0 rounded-[10px]',
         className,
       )}
     >
       {photo ? (
-        <img
-          src={photo}
-          alt=""
-          loading="lazy"
-          onError={() => setBroken((s) => new Set(s).add(skillId))}
-          className="h-full w-full object-cover"
-        />
+        <>
+          <img
+            src={photo}
+            alt=""
+            loading="lazy"
+            onError={() => setBroken((s) => new Set(s).add(skillId))}
+            className="h-full w-full object-cover"
+          />
+          {variant === 'hero' && (
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(to top, var(--color-surface) 3%, color-mix(in srgb, var(--color-surface) 30%, transparent) 46%, rgba(255, 90, 31, 0.12) 100%)',
+              }}
+            />
+          )}
+        </>
       ) : (
         <svg
           viewBox="0 0 300 300"

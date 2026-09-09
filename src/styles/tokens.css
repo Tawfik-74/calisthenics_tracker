@@ -3,21 +3,30 @@
 @theme {
   /* ── Color — light baseline ────────────────────────────────
      The app is dark-first (see the dark blocks below); light keeps
-     the same electric-green accent on cool paper. */
-  --color-surface: #f4f5f5; /* cool paper */
+     the same fiery-ember accent on warm paper. */
+  --color-surface: #f5f3ef; /* warm paper */
   --color-raised: #ffffff; /* cards */
-  --color-ink: #0b0b0b; /* primary text */
-  --color-steel: #6b6b70; /* secondary text, hairlines */
-  --color-subtitle: #8e8e93; /* tertiary / placeholder */
-  --color-line: #e4e4e6;
-  --color-effort: #10b981; /* electric athletic green — primary action */
-  --color-effort-ink: #0a7c55; /* green text / pressed variant */
-  --color-on-effort: #0b0b0b; /* text + icons placed on the green accent */
-  --color-squad: #e8a317; /* amber — a friend is calling you out */
-  --color-banked: #10b981; /* set completed, month total */
+  --color-ink: #1a150f; /* primary text — warm near-black */
+  --color-steel: #6b635a; /* secondary text, hairlines */
+  --color-subtitle: #8a8178; /* tertiary / placeholder */
+  --color-line: #e7e2da;
+  --color-effort: #ff5a1f; /* fiery ember orange — primary action */
+  --color-effort-ink: #c2410c; /* ember text / pressed variant */
+  --color-on-effort: #1a0e06; /* text + icons placed on the orange accent */
+  --color-squad: #d98a0b; /* amber — a friend is calling you out */
+  --color-banked: #ff5a1f; /* set completed, month total */
   --color-danger: #e5484d;
   --color-hover: rgba(0, 0, 0, 0.05); /* subtle press/hover wash */
   --color-hover-strong: rgba(0, 0, 0, 0.1);
+
+  /* Signature ember glow — layered behind hero areas, transparent-ended
+     so it drops onto any ground. */
+  --ember-glow: radial-gradient(
+    120% 90% at 50% -5%,
+    rgba(255, 106, 31, 0.28) 0%,
+    rgba(194, 65, 12, 0.12) 32%,
+    rgba(255, 90, 31, 0) 72%
+  );
 
   /* ── Spacing: 4px base ─────────────────────────────────── */
   --spacing-1: 0.25rem;
@@ -50,24 +59,24 @@
   --ease-stamp: cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
-/* ── Dark theme — the OHA athletic look ─────────────────────
-   Pitch-black ground, elevated #161616 cards with a #242424 hairline,
-   electric green accent, white / grey text. `:root:not([data-theme='light'])`
-   lets the OS setting win by default; `[data-theme='dark']` lets the
-   in-app toggle win. */
+/* ── Dark theme — the ember athletic look ───────────────────
+   Near-black warm ground, elevated #141210 cards with a #2a2521
+   hairline, fiery ember accent, warm-white / grey text.
+   `:root:not([data-theme='light'])` lets the OS setting win by
+   default; `[data-theme='dark']` lets the in-app toggle win. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-surface: #0b0b0b;
-    --color-raised: #161616;
-    --color-ink: #ffffff;
-    --color-steel: #8e8e93;
-    --color-subtitle: #636366;
-    --color-line: #242424;
-    --color-effort: #10b981;
-    --color-effort-ink: #34d399;
-    --color-on-effort: #0b0b0b;
-    --color-squad: #f0b13d;
-    --color-banked: #10b981;
+    --color-surface: #0a0908;
+    --color-raised: #141210;
+    --color-ink: #f7f4ef;
+    --color-steel: #a39a8e;
+    --color-subtitle: #6e655a;
+    --color-line: #2a2521;
+    --color-effort: #ff5a1f;
+    --color-effort-ink: #ff8248;
+    --color-on-effort: #1a0e06;
+    --color-squad: #f0b23d;
+    --color-banked: #ff5a1f;
     --color-danger: #f2555a;
     --color-hover: rgba(255, 255, 255, 0.06);
     --color-hover-strong: rgba(255, 255, 255, 0.12);
@@ -75,17 +84,17 @@
 }
 
 :root[data-theme='dark'] {
-  --color-surface: #0b0b0b;
-  --color-raised: #161616;
-  --color-ink: #ffffff;
-  --color-steel: #8e8e93;
-  --color-subtitle: #636366;
-  --color-line: #242424;
-  --color-effort: #10b981;
-  --color-effort-ink: #34d399;
-  --color-on-effort: #0b0b0b;
-  --color-squad: #f0b13d;
-  --color-banked: #10b981;
+  --color-surface: #0a0908;
+  --color-raised: #141210;
+  --color-ink: #f7f4ef;
+  --color-steel: #a39a8e;
+  --color-subtitle: #6e655a;
+  --color-line: #2a2521;
+  --color-effort: #ff5a1f;
+  --color-effort-ink: #ff8248;
+  --color-on-effort: #1a0e06;
+  --color-squad: #f0b23d;
+  --color-banked: #ff5a1f;
   --color-danger: #f2555a;
   --color-hover: rgba(255, 255, 255, 0.06);
   --color-hover-strong: rgba(255, 255, 255, 0.12);
