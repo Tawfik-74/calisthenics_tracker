@@ -132,7 +132,7 @@ export function WorkoutPlayer({ onExit, onNoSession }: WorkoutPlayerProps) {
     onExit?.();
   }
 
-  const accent = { '--player-accent': '#FF4500' } as CSSProperties;
+  const accent = { '--player-accent': '#FF5A1F' } as CSSProperties;
 
   if (!session && !summary) {
     return (
@@ -140,7 +140,7 @@ export function WorkoutPlayer({ onExit, onNoSession }: WorkoutPlayerProps) {
         className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5 bg-black px-8 text-center text-white"
         style={accent}
       >
-        <p className="text-lg text-[#8E8E93]">{t('player.no_session_title')}</p>
+        <p className="text-lg text-[#A39A8E]">{t('player.no_session_title')}</p>
         <button
           type="button"
           onClick={onNoSession}

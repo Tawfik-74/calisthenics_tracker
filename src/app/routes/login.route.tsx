@@ -21,16 +21,21 @@ export function LoginRoute() {
   if (status === 'authenticated') return <Navigate to="/today" replace />;
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-6 p-6">
-      <header className="flex items-center justify-between">
+    <main className="relative mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-6 p-6">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-1/2"
+        style={{ background: 'var(--ember-glow)' }}
+      />
+      <header className="relative flex items-center justify-between">
         <div>
           <p className="eyebrow">{t('common:app.name')}</p>
           <h1 className="font-display text-xl font-bold">{t('auth:title')}</h1>
         </div>
         <LocalePicker />
       </header>
-      <p className="text-sm text-[var(--color-steel)]">{t('auth:subtitle')}</p>
-      <Card>
+      <p className="relative text-sm text-[var(--color-steel)]">{t('auth:subtitle')}</p>
+      <Card className="relative">
         <LoginForm />
       </Card>
     </main>

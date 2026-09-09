@@ -119,7 +119,7 @@ export function ActiveExerciseView({
         <h2 className="text-2xl font-bold text-white">{name}</h2>
 
         <div className="flex items-center gap-3 text-sm">
-          <span className="text-[#8E8E93]">
+          <span className="text-[#A39A8E]">
             {t('player.set', { current: step.setNumber, total: step.totalSets })}
           </span>
           <button
