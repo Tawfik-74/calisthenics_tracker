@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { MOVES, moveById, moveBySlug, EXERCISES, exerciseById, exerciseBySlug } from './moves';
 
 describe('moves library', () => {
-  it('has 20 movements with unique ids and slugs', () => {
-    expect(MOVES).toHaveLength(20);
-    expect(new Set(MOVES.map((m) => m.id)).size).toBe(20);
-    expect(new Set(MOVES.map((m) => m.slug)).size).toBe(20);
+  it('has 25 movements with unique ids and slugs', () => {
+    expect(MOVES).toHaveLength(25);
+    expect(new Set(MOVES.map((m) => m.id)).size).toBe(25);
+    expect(new Set(MOVES.map((m) => m.slug)).size).toBe(25);
   });
 
   it('every regressionOf points at a known move', () => {
@@ -38,7 +38,7 @@ describe('moves library', () => {
   });
 
   it('exposes a backward-compatible Exercise catalog', () => {
-    expect(EXERCISES).toHaveLength(20);
+    expect(EXERCISES).toHaveLength(25);
     for (const e of EXERCISES) {
       expect(['push', 'pull', 'legs', 'core']).toContain(e.pattern);
     }

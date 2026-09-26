@@ -22,6 +22,7 @@ export {
   sessionSteps,
 } from './lib/skillTree';
 export { applySkillFocus, SKILL_FOCUS_NOTE } from './lib/skillFocus';
+export { applyProgressiveOverload } from './lib/progressiveOverload';
 export type {
   SkillId,
   SkillStep,

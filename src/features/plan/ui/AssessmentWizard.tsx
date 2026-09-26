@@ -8,6 +8,8 @@ import type { SkillId } from '../model/skill.types';
 import type { TrainingGoal } from '../model/assessment.types';
 import { bmiCategory, computeBmi, legEnduranceBand } from '../lib/planGenerator';
 import { skillById } from '../lib/skillTree';
+import { calculateBmr, calculateDailyTargets, calculateTdee } from '@/shared/lib/nutritionCalculator';
+import type { ActivityLevel, EquipmentType, NutritionGoal, Sex } from '@/shared/types/profile';
 import { useAssessment } from '../lib/useAssessment';
 import { GoalPicker } from './GoalPicker';
 import { SkillTargetGrid } from './SkillTargetGrid';
@@ -17,6 +19,12 @@ const DEFAULTS: AssessmentInput = {
   skillTarget: null,
   weightKg: 75,
   heightCm: 175,
+  age: 30,
+  sex: 'male',
+  activityLevel: 'moderately_active',
+  nutritionGoal: 'maintenance',
+  availableEquipment: ['pull_up_bar', 'dip_bars'],
+  limitedWeightsAvailable: false,
   pushUps: 15,
   pullUps: 5,
   dips: 8,
@@ -25,7 +33,20 @@ const DEFAULTS: AssessmentInput = {
 
 const STEP_FIELDS: Path<AssessmentInput>[][] = [
   ['goal', 'skillTarget'],
-  ['weightKg', 'heightCm', 'pushUps', 'pullUps', 'dips', 'squats'],
+  [
+    'weightKg',
+    'heightCm',
+    'age',
+    'sex',
+    'activityLevel',
+    'nutritionGoal',
+    'availableEquipment',
+    'limitedWeightsAvailable',
+    'pushUps',
+    'pullUps',
+    'dips',
+    'squats',
+  ],
   [],
 ];
 const TOTAL_STEPS = STEP_FIELDS.length;
@@ -37,10 +58,32 @@ const BENCHMARKS = [
   { key: 'squats', field: 'squats', max: 300 },
 ] as const;
 
+const SEXES: Sex[] = ['male', 'female'];
+const ACTIVITY_LEVELS: ActivityLevel[] = [
+  'sedentary',
+  'lightly_active',
+  'moderately_active',
+  'very_active',
+];
+const NUTRITION_GOALS: NutritionGoal[] = ['maintenance', 'recomposition', 'lean_bulk', 'fat_loss'];
+const EQUIPMENT: EquipmentType[] = [
+  'pull_up_bar',
+  'floor_bar',
+  'dip_bars',
+  'dumbbells',
+  'barbell',
+  'bench',
+  'resistance_bands',
+  'backpack',
+];
+const selectClass =
+  'min-h-[52px] w-full rounded-[12px] border border-[var(--color-line)] bg-[var(--color-raised)] px-3.5 text-base text-[var(--color-ink)]';
+
 export function AssessmentWizard() {
   const { t, i18n } = useTranslation(['plan', 'common']);
   const locale = i18n.language.startsWith('ar') ? 'ar-EG' : 'en-US';
   const nf = new Intl.NumberFormat(locale, { numberingSystem: 'latn', maximumFractionDigits: 1 });
+  const int = new Intl.NumberFormat(locale, { numberingSystem: 'latn', maximumFractionDigits: 0 });
   const { save } = useAssessment();
 
   const [step, setStep] = useState(0);
@@ -71,6 +114,19 @@ export function AssessmentWizard() {
   }, [values]);
 
   const legBand = legEnduranceBand(values.squats);
+  const nutritionPreview = useMemo(() => {
+    if (
+      !Number.isFinite(values.weightKg) ||
+      !Number.isFinite(values.heightCm) ||
+      !Number.isFinite(values.age)
+    ) return null;
+    const bmr = calculateBmr(values);
+    return {
+      bmr,
+      tdee: calculateTdee(bmr, values.activityLevel),
+      targets: calculateDailyTargets(values),
+    };
+  }, [values]);
   const num = (n: number) => (Number.isFinite(n) ? n : 0);
 
   async function next() {
@@ -178,6 +234,44 @@ export function AssessmentWizard() {
                 />
               )}
             </Field>
+            <Field
+              label={t('field.age')}
+              error={errors.age && t(errors.age.message!)}
+            >
+              {(p) => (
+                <TextInput
+                  type="number"
+                  inputMode="numeric"
+                  {...p}
+                  {...register('age', { valueAsNumber: true })}
+                />
+              )}
+            </Field>
+            <Field label={t('field.sex')}>
+              {(p) => (
+                <select className={selectClass} {...p} {...register('sex')}>
+                  {SEXES.map((sex) => <option key={sex} value={sex}>{t(`sex.${sex}`)}</option>)}
+                </select>
+              )}
+            </Field>
+            <Field label={t('field.activity')}>
+              {(p) => (
+                <select className={selectClass} {...p} {...register('activityLevel')}>
+                  {ACTIVITY_LEVELS.map((level) => (
+                    <option key={level} value={level}>{t(`activity.${level}`)}</option>
+                  ))}
+                </select>
+              )}
+            </Field>
+            <Field label={t('field.nutrition_goal')}>
+              {(p) => (
+                <select className={selectClass} {...p} {...register('nutritionGoal')}>
+                  {NUTRITION_GOALS.map((goal) => (
+                    <option key={goal} value={goal}>{t(`nutrition_goal.${goal}`)}</option>
+                  ))}
+                </select>
+              )}
+            </Field>
           </div>
 
           {bmiPreview != null && (
@@ -189,6 +283,32 @@ export function AssessmentWizard() {
               · {t(`bmi.category.${bmiCategory(bmiPreview)}`)}
             </p>
           )}
+
+          {nutritionPreview && (
+            <p className="text-sm text-[var(--color-steel)]">
+              {t('nutrition.preview', {
+                bmr: int.format(nutritionPreview.bmr),
+                tdee: int.format(nutritionPreview.tdee),
+                calories: int.format(nutritionPreview.targets.calories),
+              })}
+            </p>
+          )}
+
+          <fieldset className="flex flex-col gap-2 border-0 p-0">
+            <legend className="text-sm font-semibold">{t('equipment.label')}</legend>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {EQUIPMENT.map((equipment) => (
+                <label key={equipment} className="flex min-h-11 items-center gap-2 rounded-[12px] border border-[var(--color-line)] px-3 text-sm">
+                  <input type="checkbox" value={equipment} {...register('availableEquipment')} />
+                  {t(`equipment.${equipment}`)}
+                </label>
+              ))}
+            </div>
+            <label className="flex min-h-11 items-center gap-2 text-sm">
+              <input type="checkbox" {...register('limitedWeightsAvailable')} />
+              {t('equipment.limited_weights')}
+            </label>
+          </fieldset>
 
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold">{t('assessment.benchmarks')}</p>
@@ -227,6 +347,14 @@ export function AssessmentWizard() {
               <dt className="text-[var(--color-steel)]">{t('goal.label')}</dt>
               <dd className="font-medium">{t(`goal.${values.goal}`)}</dd>
             </div>
+            {nutritionPreview && (
+              <div>
+                <dt className="text-[var(--color-steel)]">{t('nutrition.daily_target')}</dt>
+                <dd className="font-numeric font-medium">
+                  {int.format(nutritionPreview.targets.calories)} kcal · {int.format(nutritionPreview.targets.protein)}g {t('nutrition.protein')}
+                </dd>
+              </div>
+            )}
             {skill && (
               <div>
                 <dt className="text-[var(--color-steel)]">{t('wizard.skill_target')}</dt>

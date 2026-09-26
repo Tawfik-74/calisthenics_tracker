@@ -11,6 +11,7 @@ import { planEn, planAr } from '@/features/plan';
 import { workoutsEn, workoutsAr } from '@/features/workouts';
 import { socialEn, socialAr } from '@/features/social';
 import { statsEn, statsAr } from '@/features/stats';
+import { nutritionEn, nutritionAr } from '@/features/nutrition';
 
 /** Restore the saved locale synchronously so the first render already has the
  * right `dir` — restoring it in an effect leaves a reload flashing LTR. */
@@ -36,6 +37,7 @@ registerNamespaces([
   { ns: 'workouts', en: workoutsEn, ar: workoutsAr },
   { ns: 'social', en: socialEn, ar: socialAr },
   { ns: 'stats', en: statsEn, ar: statsAr },
+  { ns: 'nutrition', en: nutritionEn, ar: nutritionAr },
 ]);
 
 function DirectionProvider({ children }: { children: ReactNode }) {

@@ -13,6 +13,7 @@ const plannedExerciseSchema = z.object({
   targetHoldSeconds: z.number().int().min(3).max(300).nullable(),
   restSeconds: z.number().int().min(15).max(300),
   noteKey: z.string().optional(),
+  tempo: z.literal('3-1-1').optional(),
 });
 
 export const planDaySchema = z.object({

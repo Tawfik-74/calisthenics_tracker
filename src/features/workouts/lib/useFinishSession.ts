@@ -15,6 +15,7 @@ export function useFinishSession() {
       // moves the current month AND the next month's "vs last month" ratio,
       // so invalidating a single month key would leave stale comparisons.
       if (userId) qc.invalidateQueries({ queryKey: queryKeys.stats.all(userId) });
+      if (userId) qc.invalidateQueries({ queryKey: queryKeys.plan.current(userId) });
       qc.invalidateQueries({ queryKey: queryKeys.sessions.list() });
     },
   });

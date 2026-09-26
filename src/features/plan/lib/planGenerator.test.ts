@@ -20,6 +20,12 @@ const assessment = (over: Partial<Assessment> = {}): Assessment => ({
   goal: 'strength',
   weightKg: 80,
   heightCm: 180,
+  age: 30,
+  sex: 'male',
+  activityLevel: 'moderately_active',
+  nutritionGoal: 'maintenance',
+  availableEquipment: ['pull_up_bar', 'floor_bar', 'dip_bars'],
+  limitedWeightsAvailable: false,
   pushUps: 20,
   pullUps: 8,
   dips: 12,
@@ -122,6 +128,21 @@ describe('generatePlan', () => {
     const a = generatePlan({ userId, assessment: assessment(), now: fixedNow, planId: 'p1' });
     const b = generatePlan({ userId, assessment: assessment(), now: fixedNow, planId: 'p1' });
     expect(a).toEqual(b);
+  });
+
+  it('substitutes unavailable equipment and adds tempo to limited loaded moves', () => {
+    const plan = generatePlan({
+      userId,
+      assessment: assessment({
+        availableEquipment: ['dumbbells'],
+        limitedWeightsAvailable: true,
+      }),
+      now: fixedNow,
+      planId: 'p1',
+    });
+    const pullExercises = plan.days.find((day) => day.split === 'pull')!.exercises;
+    expect(pullExercises.some((exercise) => moveById.get(exercise.exerciseId)?.slug === 'dumbbell_row')).toBe(true);
+    expect(pullExercises.some((exercise) => exercise.tempo === '3-1-1')).toBe(true);
   });
 });
 

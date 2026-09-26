@@ -16,6 +16,8 @@ import {
 } from '@/features/plan';
 import { useSessionStore } from '@/features/workouts';
 import { SquadBar } from '@/features/social';
+import { NutritionDashboard, useNutritionStore } from '@/features/nutrition';
+import { applyCalorieAdjustment, calculateDailyTargets } from '@/shared/lib/nutritionCalculator';
 
 /** Composition happens HERE: plan + workouts + social. */
 export function TodayRoute() {
@@ -27,6 +29,11 @@ export function TodayRoute() {
   const start = useSessionStore((s) => s.start);
   const active = useSessionStore((s) => s.session);
   const [editing, setEditing] = useState(false);
+  const calorieAdjustment = useNutritionStore((state) => state.calorieAdjustment);
+  const baseNutritionTargets = assessment ? calculateDailyTargets(assessment) : null;
+  const nutritionTargets = baseNutritionTargets
+    ? applyCalorieAdjustment(baseNutritionTargets, calorieAdjustment)
+    : null;
 
   function startDay(day: PlanDay) {
     if (!plan) return;
@@ -61,11 +68,14 @@ export function TodayRoute() {
       <BmiCard
         assessment={assessment}
         result={result}
+        calorieAdjustment={calorieAdjustment}
         onRetake={() => {
           clear();
           setEditing(false);
         }}
       />
+
+      {nutritionTargets && <NutritionDashboard userId={user.id} targets={nutritionTargets} />}
 
       {result.skillTarget && <SkillLoreCard skillTarget={result.skillTarget} />}
 

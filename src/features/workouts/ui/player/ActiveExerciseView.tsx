@@ -118,6 +118,21 @@ export function ActiveExerciseView({
 
         <h2 className="text-2xl font-bold text-white">{name}</h2>
 
+        {((step.equipment?.length ?? 0) > 0 || step.tempo) && (
+          <div className="flex flex-wrap gap-2 text-xs text-white/70">
+            {step.equipment?.map((item) => (
+              <span key={item} className="rounded-full border border-white/20 px-2 py-1">
+                {t(`plan:equipment.${item}`)}
+              </span>
+            ))}
+            {step.tempo && (
+              <span className="rounded-full border border-white/20 px-2 py-1">
+                {t('plan:equipment.tempo', { tempo: step.tempo })}
+              </span>
+            )}
+          </div>
+        )}
+
         <div className="flex items-center gap-3 text-sm">
           <span className="text-[#A39A8E]">
             {t('player.set', { current: step.setNumber, total: step.totalSets })}

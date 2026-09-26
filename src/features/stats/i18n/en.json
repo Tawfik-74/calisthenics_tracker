@@ -2,6 +2,21 @@
   "title": "Monthly totals",
   "empty": "No sessions logged this month yet.",
   "by_exercise": "By exercise",
+  "weight": {
+    "title": "Weight check-in",
+    "subtitle": "Use regular morning measurements. Suggestions compare two seven-day averages.",
+    "date": "Date",
+    "kg": "Weight in kilograms",
+    "save": "Save check-in",
+    "apply": "Apply {{calories}} kcal adjustment",
+    "active_adjustment": "Active calorie adjustment: {{calories}} kcal",
+    "result": {
+      "insufficient_data": "Log at least four measurements in each of two consecutive weeks.",
+      "on_track": "Current trend is on track ({{change}}% per week).",
+      "gain_stalled": "Weight gain is below target ({{change}}% per week).",
+      "loss_stalled": "Weight loss is below target ({{change}}% per week)."
+    }
+  },
   "kpi": {
     "sessions": "Sessions",
     "active_days": "Active days",

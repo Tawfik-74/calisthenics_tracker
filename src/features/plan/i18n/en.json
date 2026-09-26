@@ -60,11 +60,55 @@
     "weight_hint": "kilograms",
     "height": "Height",
     "height_hint": "centimetres",
+    "age": "Age",
+    "sex": "Equation sex",
+    "activity": "Activity level",
+    "nutrition_goal": "Nutrition goal",
     "push_ups": "Push-ups",
     "pull_ups": "Pull-ups",
     "dips": "Dips",
     "squats": "Squats"
   },
+  "sex": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "activity": {
+    "sedentary": "Sedentary",
+    "lightly_active": "Lightly active",
+    "moderately_active": "Moderately active",
+    "very_active": "Very active"
+  },
+  "nutrition_goal": {
+    "maintenance": "Maintain weight",
+    "recomposition": "Body recomposition",
+    "lean_bulk": "Lean bulk",
+    "fat_loss": "Fat loss"
+  },
+  "equipment": {
+    "label": "Available equipment",
+    "pull_up_bar": "Pull-up bar",
+    "floor_bar": "Low / floor bar",
+    "dip_bars": "Dip bars",
+    "dumbbells": "Dumbbells",
+    "barbell": "Barbell",
+    "bench": "Bench",
+    "resistance_bands": "Resistance bands",
+    "backpack": "Loadable backpack",
+    "limited_weights": "My available weights are limited",
+    "tempo": "{{tempo}} tempo"
+  },
+  "nutrition": {
+    "title": "Daily nutrition estimate",
+    "daily_target": "Daily target",
+    "calories": "Calories",
+    "protein": "protein",
+    "carbs": "Carbs",
+    "fats": "Fats",
+    "preview": "Estimated BMR {{bmr}} · TDEE {{tdee}} · target {{calories}} kcal",
+    "estimate": "Estimate only · BMR {{bmr}} kcal · TDEE {{tdee}} kcal"
+  },
+  "progression": { "up": "Progressed" },
   "wizard": {
     "step_of": "Step {{current}} of {{total}}",
     "back": "Back",
@@ -127,7 +171,8 @@
   "error": {
     "weight_range": "Enter a weight between 30 and 250 kg",
     "height_range": "Enter a height between 120 and 230 cm",
-    "benchmark_range": "Enter a realistic rep count"
+    "benchmark_range": "Enter a realistic rep count",
+    "age_range": "Enter an age between 18 and 100"
   },
   "skill": {
     "title": "Skill training",
@@ -318,6 +363,11 @@
     "pull_up": "Pull-up",
     "chin_up": "Chin-up",
     "archer_pull_up": "Archer pull-up",
+    "reverse_snow_angel": "Reverse snow angel",
+    "dumbbell_row": "Dumbbell row",
+    "barbell_row": "Barbell row",
+    "band_row": "Resistance-band row",
+    "backpack_row": "Backpack row",
     "bodyweight_squat": "Bodyweight squat",
     "split_squat": "Split squat",
     "shrimp_squat": "Shrimp squat",
@@ -331,6 +381,7 @@
   },
   "cue": {
     "finisher": "Finisher — short rest, keep moving",
+    "progressed": "Target increased after two successful sessions",
     "push_up": {
       "0": "Hands under the shoulders, body in one line",
       "1": "Lower until the elbows reach 90°",
@@ -380,6 +431,31 @@
       "0": "Pull toward one hand while the other arm stays straight",
       "1": "Keep the working elbow tight to the ribs",
       "2": "Alternate sides each rep"
+    },
+    "reverse_snow_angel": {
+      "0": "Lie face down with the ribs tucked",
+      "1": "Sweep straight arms from hips to overhead",
+      "2": "Keep the hands hovering and squeeze the upper back"
+    },
+    "dumbbell_row": {
+      "0": "Brace the torso and keep the spine neutral",
+      "1": "Pull the elbow toward the back pocket",
+      "2": "Lower the weight without twisting"
+    },
+    "barbell_row": {
+      "0": "Hinge at the hips with a braced torso",
+      "1": "Pull the bar toward the lower ribs",
+      "2": "Lower under control without standing up"
+    },
+    "band_row": {
+      "0": "Anchor the band securely at chest height",
+      "1": "Drive the elbows behind the body",
+      "2": "Pause with the shoulder blades together"
+    },
+    "backpack_row": {
+      "0": "Load and close the backpack securely",
+      "1": "Brace one hand and row toward the hip",
+      "2": "Keep the shoulder away from the ear"
     },
     "bodyweight_squat": {
       "0": "Feet shoulder-width, toes turned out slightly",

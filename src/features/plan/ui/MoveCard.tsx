@@ -24,6 +24,9 @@ export function MoveCard({ move, onPick }: { move: Move; onPick?: (m: Move) => v
       <div className="flex flex-wrap gap-2">
         <Tag tone="neutral">{t(`muscle.${move.muscleGroup}`)}</Tag>
         <Tag tone="neutral">{t(`difficulty.${move.difficulty}`)}</Tag>
+        {move.equipment.map((item) => (
+          <Tag key={item} tone="neutral">{t(`equipment.${item}`)}</Tag>
+        ))}
       </div>
       <ul className="flex flex-col gap-1 text-xs text-[var(--color-steel)]">
         {move.cueKeys.map((key) => (
