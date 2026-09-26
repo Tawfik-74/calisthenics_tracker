@@ -38,12 +38,15 @@ export function buildSteps(day: Pick<PlanDay, 'exercises'>): PlayerStep[] {
         slug,
         nameKey: move?.nameKey ?? `plan:exercise.${slug}`,
         cueKeys: [
+          ...(planned.noteKey ? [planned.noteKey] : []),
           ...(move?.cueKeys ?? [
             `plan:cue.${slug}.0`,
             `plan:cue.${slug}.1`,
             `plan:cue.${slug}.2`,
           ]),
         ],
+        equipment: [...(move?.equipment ?? [])],
+        ...(planned.tempo ? { tempo: planned.tempo } : {}),
         measure,
         targetReps: measure === 'reps' ? (planned.targetReps ?? move?.defaultReps ?? 8) : null,
         targetHoldSeconds:

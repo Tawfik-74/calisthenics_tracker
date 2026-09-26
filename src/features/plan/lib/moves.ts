@@ -1,5 +1,6 @@
 import { asId, type ExerciseId } from '@/shared/types/ids';
 import type { FitnessLevel } from '@/features/auth';
+import type { EquipmentType } from '@/shared/types/profile';
 import type { Exercise } from '../model/plan.types';
 
 export type MuscleGroup = 'push' | 'pull' | 'legs' | 'core';
@@ -27,6 +28,8 @@ export interface Move {
   /** Three coaching cues: `plan:cue.${slug}.${0|1|2}` */
   cueKeys: readonly [string, string, string];
   regressionOf: ExerciseId | null;
+  /** Any one listed item makes the movement available; empty means no gear. */
+  equipment: readonly EquipmentType[];
 }
 
 const id = (n: number): ExerciseId =>
@@ -49,22 +52,28 @@ interface MoveSeed {
   hold: number | null;
   rest: number;
   regressionOf: number | null;
+  equipment?: EquipmentType[];
 }
 
 const SEEDS: MoveSeed[] = [
   // ── Push ────────────────────────────────────────────────
   { n: 1, slug: 'push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'beginner', sets: 4, reps: 12, hold: null, rest: 90, regressionOf: null },
-  { n: 2, slug: 'incline_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 8, hold: null, rest: 90, regressionOf: 1 },
+  { n: 2, slug: 'incline_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 8, hold: null, rest: 90, regressionOf: 1, equipment: ['bench'] },
   { n: 3, slug: 'pike_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 8, hold: null, rest: 90, regressionOf: 1 },
-  { n: 4, slug: 'dip', muscleGroup: 'push', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 120, regressionOf: 1 },
+  { n: 4, slug: 'dip', muscleGroup: 'push', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 120, regressionOf: 1, equipment: ['dip_bars'] },
   { n: 5, slug: 'pseudo_planche_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'advanced', sets: 4, reps: 8, hold: null, rest: 120, regressionOf: 3 },
-  { n: 6, slug: 'decline_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 90, regressionOf: 1 },
+  { n: 6, slug: 'decline_push_up', muscleGroup: 'push', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 90, regressionOf: 1, equipment: ['bench'] },
 
   // ── Pull ────────────────────────────────────────────────
-  { n: 10, slug: 'australian_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 10, hold: null, rest: 90, regressionOf: null },
-  { n: 11, slug: 'pull_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'intermediate', sets: 4, reps: 6, hold: null, rest: 120, regressionOf: 10 },
-  { n: 12, slug: 'chin_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 120, regressionOf: 10 },
-  { n: 13, slug: 'archer_pull_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'advanced', sets: 4, reps: 5, hold: null, rest: 150, regressionOf: 11 },
+  { n: 10, slug: 'australian_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 10, hold: null, rest: 90, regressionOf: null, equipment: ['floor_bar'] },
+  { n: 11, slug: 'pull_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'intermediate', sets: 4, reps: 6, hold: null, rest: 120, regressionOf: 10, equipment: ['pull_up_bar'] },
+  { n: 12, slug: 'chin_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 120, regressionOf: 10, equipment: ['pull_up_bar'] },
+  { n: 13, slug: 'archer_pull_up', muscleGroup: 'pull', measure: 'reps', difficulty: 'advanced', sets: 4, reps: 5, hold: null, rest: 150, regressionOf: 11, equipment: ['pull_up_bar'] },
+  { n: 40, slug: 'reverse_snow_angel', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 12, hold: null, rest: 60, regressionOf: null },
+  { n: 41, slug: 'dumbbell_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 10, hold: null, rest: 90, regressionOf: null, equipment: ['dumbbells'] },
+  { n: 42, slug: 'barbell_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'intermediate', sets: 4, reps: 8, hold: null, rest: 120, regressionOf: 41, equipment: ['barbell'] },
+  { n: 43, slug: 'band_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 12, hold: null, rest: 75, regressionOf: null, equipment: ['resistance_bands'] },
+  { n: 44, slug: 'backpack_row', muscleGroup: 'pull', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 12, hold: null, rest: 75, regressionOf: null, equipment: ['backpack'] },
 
   // ── Legs ────────────────────────────────────────────────
   { n: 20, slug: 'bodyweight_squat', muscleGroup: 'legs', measure: 'reps', difficulty: 'beginner', sets: 3, reps: 12, hold: null, rest: 90, regressionOf: null },
@@ -76,9 +85,9 @@ const SEEDS: MoveSeed[] = [
   // ── Core ────────────────────────────────────────────────
   { n: 30, slug: 'plank', muscleGroup: 'core', measure: 'hold', difficulty: 'beginner', sets: 3, reps: null, hold: 30, rest: 60, regressionOf: null },
   { n: 31, slug: 'hollow_hold', muscleGroup: 'core', measure: 'hold', difficulty: 'beginner', sets: 3, reps: null, hold: 25, rest: 60, regressionOf: 30 },
-  { n: 32, slug: 'hanging_knee_raise', muscleGroup: 'core', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 75, regressionOf: 30 },
-  { n: 33, slug: 'l_sit', muscleGroup: 'core', measure: 'hold', difficulty: 'intermediate', sets: 3, reps: null, hold: 15, rest: 75, regressionOf: 31 },
-  { n: 34, slug: 'front_lever_tuck', muscleGroup: 'core', measure: 'hold', difficulty: 'advanced', sets: 4, reps: null, hold: 12, rest: 120, regressionOf: 33 },
+  { n: 32, slug: 'hanging_knee_raise', muscleGroup: 'core', measure: 'reps', difficulty: 'intermediate', sets: 3, reps: 10, hold: null, rest: 75, regressionOf: 30, equipment: ['pull_up_bar'] },
+  { n: 33, slug: 'l_sit', muscleGroup: 'core', measure: 'hold', difficulty: 'intermediate', sets: 3, reps: null, hold: 15, rest: 75, regressionOf: 31, equipment: ['dip_bars', 'floor_bar'] },
+  { n: 34, slug: 'front_lever_tuck', muscleGroup: 'core', measure: 'hold', difficulty: 'advanced', sets: 4, reps: null, hold: 12, rest: 120, regressionOf: 33, equipment: ['pull_up_bar'] },
 ];
 
 export const MOVES: readonly Move[] = SEEDS.map((s) => ({
@@ -94,6 +103,7 @@ export const MOVES: readonly Move[] = SEEDS.map((s) => ({
   restSeconds: s.rest,
   cueKeys: cues(s.slug),
   regressionOf: s.regressionOf === null ? null : id(s.regressionOf),
+  equipment: s.equipment ?? [],
 }));
 
 export const moveById = new Map<ExerciseId, Move>(MOVES.map((m) => [m.id, m]));

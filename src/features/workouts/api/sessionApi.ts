@@ -63,12 +63,40 @@ export const sessionApi = {
 
   async list(): Promise<StoredSession[]> {
     if (!supabase) return readHistory();
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('workout_sessions')
-      .select('*')
+      .select('id,plan_id,plan_day_index,split,started_at,finished_at,notes,logged_sets(id,exercise_id,set_number,reps,hold_seconds,effort,completed_at)')
       .eq('status', 'completed')
       .order('finished_at', { ascending: false });
-    return (data ?? []) as unknown as StoredSession[];
+    if (error) throw error;
+    return (data ?? []).map((row) => {
+      const grouped = new Map<string, typeof row.logged_sets>();
+      for (const set of row.logged_sets) {
+        grouped.set(set.exercise_id, [...(grouped.get(set.exercise_id) ?? []), set]);
+      }
+      return {
+        sessionId: row.id,
+        planId: row.plan_id,
+        planDayIndex: row.plan_day_index,
+        split: row.split,
+        startedAt: row.started_at,
+        finishedAt: row.finished_at,
+        notes: row.notes,
+        exercises: [...grouped.entries()].map(([exerciseId, sets]) => ({
+          exerciseId,
+          sets: sets.map((set) => ({
+            exerciseId,
+            setNumber: set.set_number,
+            measure: set.hold_seconds != null ? 'hold' as const : 'reps' as const,
+            reps: set.reps,
+            holdSeconds: set.hold_seconds,
+            effort: set.effort,
+            completedAt: set.completed_at,
+          })),
+        })),
+        savedAt: row.finished_at,
+      } as StoredSession;
+    });
   },
 
   /** Local history — used by the offline stats fallback. */

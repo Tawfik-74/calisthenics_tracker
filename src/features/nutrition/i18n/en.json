@@ -1,0 +1,16 @@
+{
+  "title": "Today's nutrition",
+  "subtitle": "Targets are estimates. Log what you eat and adjust from your trend.",
+  "calories": "Calories",
+  "protein": "Protein",
+  "carbs": "Carbs",
+  "fats": "Fats",
+  "name": "Meal name",
+  "quick_log": "Quick log a meal",
+  "recipes": "Saved recipes",
+  "save_recipe": "Save recipe",
+  "log": "Log",
+  "today": "Today's meals",
+  "empty": "Nothing logged today.",
+  "remove": "Remove"
+}

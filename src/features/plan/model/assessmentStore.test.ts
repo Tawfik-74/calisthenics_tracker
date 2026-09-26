@@ -1,11 +1,17 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { assessmentInputSchema } from './assessment.schema';
+import { assessmentInputSchema, persistedAssessmentSchema } from './assessment.schema';
 import { useAssessmentStore } from './assessmentStore';
 
 const valid = {
   goal: 'strength' as const,
   weightKg: 80,
   heightCm: 180,
+  age: 30,
+  sex: 'male' as const,
+  activityLevel: 'moderately_active' as const,
+  nutritionGoal: 'maintenance' as const,
+  availableEquipment: ['pull_up_bar', 'dip_bars'] as ('pull_up_bar' | 'dip_bars')[],
+  limitedWeightsAvailable: false,
   pushUps: 20,
   pullUps: 8,
   dips: 12,
@@ -30,6 +36,22 @@ describe('assessmentInputSchema', () => {
 
   it('accepts a valid assessment', () => {
     expect(assessmentInputSchema.safeParse(valid).success).toBe(true);
+  });
+
+  it('fills profile defaults when reading a legacy assessment', () => {
+    const parsed = persistedAssessmentSchema.parse({
+      assessment: { ...valid, age: undefined, sex: undefined, activityLevel: undefined,
+        nutritionGoal: undefined, availableEquipment: undefined, limitedWeightsAvailable: undefined,
+        takenAt: '2026-09-01T00:00:00.000Z' },
+    });
+    expect(parsed.assessment).toMatchObject({
+      age: 30,
+      sex: 'male',
+      activityLevel: 'moderately_active',
+      nutritionGoal: 'maintenance',
+      availableEquipment: ['pull_up_bar', 'dip_bars'],
+      limitedWeightsAvailable: false,
+    });
   });
 });
 

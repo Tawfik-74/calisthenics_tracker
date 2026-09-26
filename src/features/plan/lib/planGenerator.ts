@@ -9,8 +9,9 @@ import type {
 } from '../model/assessment.types';
 import { PROGRESSION } from './progressionTable';
 import { SPLIT_TEMPLATES } from './splitTemplates';
-import { MOVES, moveBySlug } from './moves';
+import { MOVES, moveById, moveBySlug } from './moves';
 import { applySkillFocus } from './skillFocus';
+import type { EquipmentType } from '@/shared/types/profile';
 
 // ── Tunable constants ─────────────────────────────────────
 export const TIER_WEIGHTS = { pushUps: 1, pullUps: 2, dips: 1.5 } as const;
@@ -32,6 +33,12 @@ const RANGES = {
 
 const clamp = (n: number, [lo, hi]: readonly [number, number]) => Math.min(hi, Math.max(lo, n));
 const levelRank: Record<FitnessLevel, number> = { beginner: 0, intermediate: 1, advanced: 2 };
+const LOAD_EQUIPMENT = new Set<EquipmentType>([
+  'dumbbells',
+  'barbell',
+  'resistance_bands',
+  'backpack',
+]);
 
 // ── Pure metrics ─────────────────────────────────────────
 
@@ -169,6 +176,51 @@ function coreFinisher(tier: FitnessLevel, taken: Set<string>): PlannedExercise |
   };
 }
 
+function moveIsAvailable(equipment: ReadonlySet<EquipmentType>, required: readonly EquipmentType[]) {
+  return required.length === 0 || required.some((item) => equipment.has(item));
+}
+
+function applyEquipment(
+  days: PlanDay[],
+  tier: FitnessLevel,
+  availableEquipment: EquipmentType[],
+  limitedWeightsAvailable: boolean,
+): PlanDay[] {
+  const available = new Set(availableEquipment);
+  return days.map((day) => {
+    const taken = new Set<string>();
+    return {
+      ...day,
+      exercises: day.exercises.map((exercise) => {
+        const current = moveById.get(exercise.exerciseId);
+        if (!current) return exercise;
+
+        const replacement = moveIsAvailable(available, current.equipment)
+          ? current
+          : MOVES.filter(
+              (move) =>
+                move.muscleGroup === current.muscleGroup &&
+                levelRank[move.difficulty] <= levelRank[tier] &&
+                moveIsAvailable(available, move.equipment) &&
+                !taken.has(move.id),
+            ).sort((a, b) => {
+              const aUsesGear = Number(a.equipment.some((item) => available.has(item)));
+              const bUsesGear = Number(b.equipment.some((item) => available.has(item)));
+              return bUsesGear - aUsesGear || levelRank[b.difficulty] - levelRank[a.difficulty];
+            })[0] ?? current;
+
+        taken.add(replacement.id);
+        const loaded = replacement.equipment.some((item) => LOAD_EQUIPMENT.has(item));
+        return {
+          ...exercise,
+          exerciseId: replacement.id,
+          ...(limitedWeightsAvailable && loaded ? { tempo: '3-1-1' as const } : {}),
+        };
+      }),
+    };
+  });
+}
+
 export interface GeneratePlanArgs {
   userId: UserId;
   assessment: Assessment;
@@ -230,6 +282,12 @@ export function generatePlan({
 
   days = applySquatNudge(days, assessment.squats);
   if (result.skillTarget) days = applySkillFocus(days, result.skillTarget);
+  days = applyEquipment(
+    days,
+    result.tier,
+    assessment.availableEquipment,
+    assessment.limitedWeightsAvailable,
+  );
 
   return {
     id: asId(planId),

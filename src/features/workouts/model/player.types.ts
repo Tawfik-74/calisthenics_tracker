@@ -1,4 +1,5 @@
 import type { ExerciseId } from '@/shared/types/ids';
+import type { EquipmentType } from '@/shared/types/profile';
 
 /** Where the player is in its lifecycle. */
 export type PlayerStatus = 'idle' | 'active' | 'resting' | 'paused' | 'completed';
@@ -19,6 +20,8 @@ export interface PlayerStep {
   nameKey: string;
   /** Three coaching cues: `plan:cue.${slug}.${0|1|2}` */
   cueKeys: string[];
+  equipment?: EquipmentType[];
+  tempo?: '3-1-1';
   measure: SetMeasure;
   targetReps: number | null;
   targetHoldSeconds: number | null;

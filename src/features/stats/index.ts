@@ -1,8 +1,11 @@
 export { MonthlyDashboard } from './ui/MonthlyDashboard';
 export { ExerciseTotalsTable } from './ui/ExerciseTotalsTable';
 export { MonthPicker } from './ui/MonthPicker';
+export { WeightCheckInCard } from './ui/WeightCheckInCard';
 export { useMonthlyStats } from './lib/useMonthlyStats';
 export { aggregateMonthly } from './lib/aggregateMonthly';
+export { checkWeightProgression } from './lib/adaptiveNutrition';
+export type { WeighIn, NutritionAdjustment } from './lib/adaptiveNutrition';
 export { statsApi } from './api/statsApi';
 export type { MonthlyStats, ExerciseMonthlyTotal } from './model/stats.types';
 export { default as statsEn } from './i18n/en.json';

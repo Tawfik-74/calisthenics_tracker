@@ -22,6 +22,7 @@ export interface PlannedExercise {
   targetHoldSeconds: number | null;
   restSeconds: number;
   noteKey?: string;
+  tempo?: '3-1-1';
 }
 
 export interface PlanDay {

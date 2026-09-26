@@ -1,4 +1,5 @@
 import type { IsoDateTime } from '@/shared/types/ids';
+import type { EquipmentType, NutritionProfile } from '@/shared/types/profile';
 import type { FitnessLevel } from '@/features/auth';
 import type { SkillId } from './skill.types';
 
@@ -8,15 +9,15 @@ export type TrainingGoal = 'strength' | 'hypertrophy' | 'mastery' | 'fat_loss';
 export type BmiCategory = 'underweight' | 'normal' | 'overweight' | 'obese';
 
 /** Raw onboarding input plus the timestamp it was captured. */
-export interface Assessment {
+export interface Assessment extends NutritionProfile {
   goal: TrainingGoal;
   /**
    * Set only when `goal === 'mastery'` and the athlete picked a specific target
    * skill. Switches plan generation into skill-progression mode.
    */
   skillTarget?: SkillId | null;
-  weightKg: number;
-  heightCm: number;
+  availableEquipment: EquipmentType[];
+  limitedWeightsAvailable: boolean;
   /** Max reps in a single all-out set. */
   pushUps: number;
   pullUps: number;

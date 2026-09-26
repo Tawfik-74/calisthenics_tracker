@@ -3,6 +3,7 @@ import { Card, Tag } from '@/shared/ui';
 import { formatNumber } from '@/shared/lib/formatters';
 import type { PlanDay } from '../model/plan.types';
 import { exerciseName } from '../lib/exerciseName';
+import { moveById } from '../lib/moves';
 
 const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -22,17 +23,27 @@ export function PlanDayCard({ day, onStart }: { day: PlanDay; onStart?: (day: Pl
         <p className="text-sm text-[var(--color-steel)]">{t('plan:rest_day')}</p>
       ) : (
         <ul className="flex flex-col gap-2">
-          {day.exercises.map((ex) => (
-            <li key={ex.exerciseId} className="flex items-baseline justify-between gap-3 text-sm">
-              <span className="font-medium">{exerciseName(t, ex.exerciseId)}</span>
-              <span className="font-numeric text-[var(--color-steel)] tabular-nums">
-                {formatNumber(ex.sets, locale)}×
-                {ex.targetReps != null
-                  ? formatNumber(ex.targetReps, locale)
-                  : `${formatNumber(ex.targetHoldSeconds ?? 0, locale)}${t('plan:unit.sec')}`}
-              </span>
-            </li>
-          ))}
+          {day.exercises.map((ex) => {
+            const move = moveById.get(ex.exerciseId);
+            return (
+              <li key={ex.exerciseId} className="flex items-start justify-between gap-3 text-sm">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="font-medium">{exerciseName(t, ex.exerciseId)}</span>
+                  {move?.equipment.map((item) => (
+                    <Tag key={item} tone="neutral">{t(`plan:equipment.${item}`)}</Tag>
+                  ))}
+                  {ex.tempo && <Tag tone="neutral">{ex.tempo}</Tag>}
+                  {ex.noteKey === 'plan:cue.progressed' && <Tag tone="banked">{t('plan:progression.up')}</Tag>}
+                </div>
+                <span className="font-numeric shrink-0 text-[var(--color-steel)] tabular-nums">
+                  {formatNumber(ex.sets, locale)}×
+                  {ex.targetReps != null
+                    ? formatNumber(ex.targetReps, locale)
+                    : `${formatNumber(ex.targetHoldSeconds ?? 0, locale)}${t('plan:unit.sec')}`}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       )}
 
